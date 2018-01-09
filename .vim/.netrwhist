@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/dongzq/code/tooo/LA.UM.6.2/LINUX/android/kernel/msm-4.4/arch/arm/boot/dts/qcom'
+let g:netrw_dirhist_2='/home/dongzq/code/tooo/LA.UM.6.2/LINUX/android/hardware/qcom/camera/QCamera2/HAL'
+let g:netrw_dirhist_3='/home/dongzq/code/zmdev/LINUX/android/frameworks/base/cmds/bootanimation'
+let g:netrw_dirhist_4='/home/dongzq/code/tooo/LA.UM.6.2/LINUX/android/device/qcom/common'
+let g:netrw_dirhist_5='/home/dongzq/code/zmtwo/boot_images/QcomPkg/Library/MDPLib'
+let g:netrw_dirhist_6='/home/dongzq/code/zmtwo/LINUX/android/hardware/qcom/display/sdm/libs/hwc'
+let g:netrw_dirhist_7='/home/dongzq/code/zmtwo/LINUX/android/frameworks/native/services/surfaceflinger'
+let g:netrw_dirhist_8='/'
+let g:netrw_dirhist_9='/home/dongzq/code/zmdev/LINUX/android/vendor/qcom/build'
