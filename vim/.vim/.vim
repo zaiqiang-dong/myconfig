@@ -1,0 +1,1 @@
+/home/dongzq/code/myconfig/.vim
