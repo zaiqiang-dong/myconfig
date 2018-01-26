@@ -1,0 +1,20 @@
+sudo apt-get install samba
+sudo vi /etc/samba/smb.conf
+
+[share]
+comment = Share Folder require password
+browseable = yes
+path = /home/share
+create mask = 0777
+directory mask = 0777
+valid users = share
+force user = nobody
+force group = nogroup
+public = yes
+writable = yes
+available = yes
+
+sudo useradd -m share
+sudo passwd share
+sudo smbpasswd -a share
+sudo /etc/init.d/samba restart
