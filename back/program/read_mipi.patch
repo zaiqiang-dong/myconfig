@@ -1,8 +1,18 @@
 diff --git a/drivers/video/fbdev/msm/mdss_fb.c b/drivers/video/fbdev/msm/mdss_fb.c
-index fe12896..0d89506 100644
+index 48941bb..c58cbe3 100644
 --- a/drivers/video/fbdev/msm/mdss_fb.c
 +++ b/drivers/video/fbdev/msm/mdss_fb.c
-@@ -55,6 +55,8 @@
+@@ -48,6 +48,9 @@
+ #include <linux/dma-buf.h>
+ #include <sync.h>
+ #include <sw_sync.h>
++#include <linux/types.h>
++#include <linux/string.h>
++#include <linux/ctype.h>
+ 
+ #include "mdss_fb.h"
+ #include "mdss_mdp_splash_logo.h"
+@@ -55,6 +58,8 @@
  #include "mdss_debug.h"
  #include "mdss_smmu.h"
  #include "mdss_mdp.h"
@@ -11,72 +21,103 @@ index fe12896..0d89506 100644
  
  #ifdef CONFIG_FB_MSM_TRIPLE_BUFFER
  #define MDSS_FB_NUM 3
-@@ -460,6 +462,64 @@ static ssize_t mdss_fb_get_src_split_info(struct device *dev,
+@@ -468,6 +473,95 @@ static ssize_t mdss_fb_get_src_split_info(struct device *dev,
  
  	return ret;
  }
-+#define RBUF_LEN 8 
-+static char  rbuf[RBUF_LEN] = {'\0'};
++#define RBUF_LEN 8
++#define PAYLOAD_LEN 8
++static char rbuf[RBUF_LEN] = {'\0'};
 +static int addr = 0;
-+static int rlen = 0;
++static int rw_len = 0;
++static int rw_flag = 0;
 +
-+static char read_reg[1] = {0x00};
-+static struct dsi_cmd_desc read_reg_cmd = {
-+		{DTYPE_GEN_READ2, 1, 0, 0, 100, sizeof(read_reg)}, read_reg};
++static char rw_paload[PAYLOAD_LEN] = {0x00};
++static struct dsi_cmd_desc rw_dcs_cmd = {
++		{DTYPE_GEN_READ2, 1, 0, 0, 100, sizeof(rw_paload)}, rw_paload};
 +
-+
-+void mdss_dsi_read_reg_of_panel(struct mdss_dsi_ctrl_pdata *ctrl)
-+{
-+	struct dcs_cmd_req cmdreq;
-+
-+	read_reg[0] = addr; 
-+	cmdreq.cmds = &read_reg_cmd;
-+	cmdreq.cmds_cnt = 1;
-+	cmdreq.flags = CMD_REQ_RX | CMD_REQ_LP_MODE |CMD_REQ_DMA_TPG;
-+	cmdreq.rlen = rlen;
-+	cmdreq.cb = NULL;
-+	cmdreq.rbuf = rbuf;
-+	mdss_dsi_cmdlist_put(ctrl, &cmdreq);
-+}
 +
 +static ssize_t msm_panel_register_show(struct device *dev,
 +		struct device_attribute *attr, char *buf)
 +{
 +	int i = 0;
-+	struct fb_info *fbi = dev_get_drvdata(dev);
-+	struct msm_fb_data_type *mfd = fbi->par;
-+	struct mdss_panel_data *pdata;
-+	struct mdss_dsi_ctrl_pdata *ctrl_pdata = NULL;
-+	pdata = dev_get_platdata(&mfd->pdev->dev);
-+	ctrl_pdata = container_of(pdata, struct mdss_dsi_ctrl_pdata,
-+				panel_data);
-+	mdss_dsi_read_reg_of_panel(ctrl_pdata);	
 +	pr_err("********************\n");
-+	for(i=0;i < rlen;i++)
++	for(i=0;i < rw_len;i++)
 +		pr_err("rbuf[%d] = 0x%x\n", i, rbuf[i]);
 +	pr_err("********************\n");
 +
 +	return 0;
 +}
 +
++static int msm_panel_get_next_data(const char **str){
++	int next_data = 0;
++
++	while(!isspace(*(*str)))
++		(*str)++;
++	*str = skip_spaces(*str);
++	sscanf(*str, "%d", &next_data);
++	return next_data;
++
++}
++
 +static ssize_t msm_panel_register_store(struct device *dev,
 +	struct device_attribute *attr, const char *buf, size_t count)
 +{
-+	int num = 0;
-+	num = sscanf(buf, "%d %d", &addr, &rlen);
-+	if (num != 2) {
-+		pr_err("The reg addr and read count not right, Input count =%d\n", num);
-+		return num;
++	int i = 0;
++	const char *str = buf;
++	struct fb_info *fbi = dev_get_drvdata(dev);
++	struct msm_fb_data_type *mfd = fbi->par;
++	struct mdss_panel_data *pdata;
++	struct mdss_dsi_ctrl_pdata *ctrl_pdata = NULL;
++
++	struct dcs_cmd_req cmdreq;
++
++	pdata = dev_get_platdata(&mfd->pdev->dev);
++	ctrl_pdata = container_of(pdata, struct mdss_dsi_ctrl_pdata,
++				panel_data);
++
++	str = skip_spaces(str);
++	sscanf(str, "%d", &addr);
++	rw_paload[0] = addr;
++	rw_flag = msm_panel_get_next_data(&str);
++	rw_len = msm_panel_get_next_data(&str);
++	cmdreq.cmds = &rw_dcs_cmd;
++	cmdreq.cmds_cnt = 1;
++	cmdreq.rlen = rw_len;
++	cmdreq.cb = NULL;
++	cmdreq.rbuf = rbuf;
++	pr_err("addr= %x,rw_flag = %d, rw_len = %d\n", addr, rw_flag, rw_len);
++	if(rw_flag == 1){
++		cmdreq.rlen = 0;
++		cmdreq.flags = CMD_REQ_COMMIT | CMD_REQ_LP_MODE |CMD_REQ_DMA_TPG;
++		for(i = 0; i < rw_len; i++)
++			rw_paload[i+1] = (char)msm_panel_get_next_data(&str);
++		rw_dcs_cmd.dchdr.dlen = rw_len + 1;
++		if(rw_len == 0) {
++			rw_dcs_cmd.dchdr.dtype = DTYPE_GEN_WRITE;
++		} else if(rw_len == 1) {
++			rw_dcs_cmd.dchdr.dtype = DTYPE_GEN_WRITE1;
++		} else if(rw_len == 2) {
++			rw_dcs_cmd.dchdr.dtype = DTYPE_GEN_WRITE2;
++		} else {
++			rw_dcs_cmd.dchdr.dtype = DTYPE_GEN_LWRITE;
++		};
++
 +	} else {
-+		pr_err("Addr = 0x%x,and rlen = %d\n", addr, rlen);
++		cmdreq.rlen = rw_len;
++		cmdreq.flags = CMD_REQ_RX | CMD_REQ_LP_MODE |CMD_REQ_DMA_TPG;
++		rw_dcs_cmd.dchdr.dtype = DTYPE_GEN_READ;
++		rw_dcs_cmd.dchdr.dlen = 1;
 +	}
++
++	mdss_dsi_cmdlist_put(ctrl_pdata, &cmdreq);
 +
 +	return count;
 +}
  
  static ssize_t mdss_fb_get_thermal_level(struct device *dev,
  		struct device_attribute *attr, char *buf)
-@@ -934,6 +994,8 @@ static DEVICE_ATTR(measured_fps, S_IRUGO | S_IWUSR | S_IWGRP,
+@@ -942,6 +1036,8 @@ static DEVICE_ATTR(measured_fps, S_IRUGO | S_IWUSR | S_IWGRP,
  static DEVICE_ATTR(msm_fb_persist_mode, S_IRUGO | S_IWUSR,
  	mdss_fb_get_persist_mode, mdss_fb_change_persist_mode);
  static DEVICE_ATTR(idle_power_collapse, S_IRUGO, mdss_fb_idle_pc_notify, NULL);
@@ -85,7 +126,7 @@ index fe12896..0d89506 100644
  
  static struct attribute *mdss_fb_attrs[] = {
  	&dev_attr_msm_fb_type.attr,
-@@ -949,6 +1011,7 @@ static struct attribute *mdss_fb_attrs[] = {
+@@ -957,6 +1053,7 @@ static struct attribute *mdss_fb_attrs[] = {
  	&dev_attr_measured_fps.attr,
  	&dev_attr_msm_fb_persist_mode.attr,
  	&dev_attr_idle_power_collapse.attr,

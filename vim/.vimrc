@@ -7,6 +7,9 @@ set cindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set foldenable
+set foldmethod=marker
+set cursorline  
 filetype plugin indent on 
 syntax enable
 colorscheme tt_vim
