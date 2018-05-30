@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/dongzq/code/szm/LINUX/android/frameworks/native'
 let g:netrw_dirhist_2='/home/dongzq/code/szm/LINUX/android/frameworks/native/services'
 let g:netrw_dirhist_3='/home/dongzq/code/smm/LINUX/android/hardware/qcom/display/sdm/libs'
+let g:netrw_dirhist_4='/home/zqdong/code/ap-msm8998/hardware/qcom/display/libgralloc'

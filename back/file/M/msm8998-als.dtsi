@@ -1,0 +1,50 @@
+&tlmm {
+	als_mux {
+		als_active: als_active {
+			mux {
+				pins = "gpio96";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio96";
+				drive-strength = <16>;
+				bias-pull-up;
+			};
+		};
+
+		als_suspend: als_suspend {
+			mux {
+				pins = "gpio96";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio96";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+	};
+
+};
+
+
+&i2c_6 {
+	status = "okay";
+	als@24 {
+		compatible = "epticore,em307";
+		reg = <0x24>;
+		als,id = <0>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <96 0x2008>;
+		als,irq-gpio = <&tlmm 96 0x2008>;
+		vdd-supply = <&pm8998_l19>;
+		als,vdd-current = <20000>;
+		als,vdd-voltage = <2000000 2000000>;
+		pinctrl-names = "als_active", "als_suspend";
+		pinctrl-0 = <&als_active>;
+		pinctrl-1 = <&als_suspend>;
+
+	};
+};
