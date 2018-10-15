@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=firefox
-Exec=/home/dongzq/tool/firefox/firefox
-Terminal=false
-Icon=/home/dongzq/tool/firefox/browser/icons/mozicon128.png
-Type=Application
-Categories=Development
