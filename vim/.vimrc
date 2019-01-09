@@ -2,11 +2,13 @@
 " Vim config manage by github.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nu
-set autoindent
-set cindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+set autoindent
+set smartindent
+
 set foldenable
 set foldmethod=marker
 set cursorline  
@@ -17,6 +19,14 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
        \| exe "normal g'\"" | endif
 endif
+
+nmap da d$
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" leader setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = "."
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -40,7 +50,40 @@ nmap cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap ci :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
 nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 vmap <c-c> "+y
-let Tlist_Show_One_File=1     "不同时显示多个文件的tag，只显示当前文件的  
-let Tlist_Exit_OnlyWindow=1   "如果taglist窗口是最后一个窗口，则退出vim 
-let Tlist_Ctags_Cmd="/usr/bin/ctags" "将taglist与ctags关联
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Ctags_Cmd="/usr/bin/ctags"
 let Tlist_Auto_Open=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nerdcommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDSpaceDelims=1
+let NERDCompactSexyComs=1
+let g:NERDDefaultAlign = 'left'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"mru
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>r :MRU<cr>
+let g:MRU_Window_Height=30
+let g:MRU_Max_Menu_Entries=20 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nredtree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=100
+let g:NERDTreeWinPos='right'
+let g:NERDTreeQuitOnOpen=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+map <C-f> :call FormatCode()<CR>
+func FormatCode()
+	if &filetype == 'c' || &filetype == 'h' || &filetype == 'cpp' || &filetype == 'cc' || &filetype == 'hpp'
+		exec "!astyle --style=linux --suffix=none %" 
+	elseif &filetype == 'java'
+		exec "!astyle --style=java --suffix=none %"
+	endif
+endfunc
