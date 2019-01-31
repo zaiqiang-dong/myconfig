@@ -96,4 +96,7 @@ endfunc
 let g:rainbow_active = 1
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"better_whitespace
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:better_whitespace_enabled=1
