@@ -69,7 +69,7 @@ let g:NERDDefaultAlign = 'left'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>r :MRU<cr>
 let g:MRU_Window_Height=30
-let g:MRU_Max_Menu_Entries=20 
+let g:MRU_Max_Menu_Entries=20
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nredtree
@@ -83,7 +83,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-f> :call FormatCode()<CR>
 func FormatCode()
 	if &filetype == 'c' || &filetype == 'h' || &filetype == 'cpp' || &filetype == 'cc' || &filetype == 'hpp'
-		exec "!astyle --style=linux --suffix=none %" 
+		exec "!astyle --style=linux --suffix=none %"
 	elseif &filetype == 'java'
 		exec "!astyle --style=java --suffix=none %"
 	endif
@@ -94,6 +94,13 @@ endfunc
 "rianbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
-
-
+	let g:rainbow_conf = {
+	\	'guifgs': ['magenta', 'cyan', 'red', 'brown'],
+	\	'ctermfgs': ['magenta', 'cyan', 'red', 'brown'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"better_whitespace
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:better_whitespace_enabled=1
