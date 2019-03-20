@@ -2,17 +2,18 @@
 " Vim config manage by github.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nu
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+"set tabstop=4
+"set softtabstop=4
+"set shiftwidth=4
+"set autoindent
+"set smartindent
 
-set autoindent
-set smartindent
+autocmd FileType c setlocal noexpandtab tabstop=4
+autocmd FileType cpp,java setlocal expandtab tabstop=4
 
 set foldenable
 set foldmethod=marker
-set cursorline  
-filetype plugin indent on 
+filetype plugin indent on
 syntax enable
 colorscheme tt_vim
 if has("autocmd")
