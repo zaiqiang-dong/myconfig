@@ -50,7 +50,7 @@ nmap ce :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap ci :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
 nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
-vmap <c-c> "+y
+vmap <C-c> "+y
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
@@ -80,12 +80,22 @@ let g:NERDTreeWinPos='right'
 let g:NERDTreeQuitOnOpen=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-map <C-f> :call FormatCode()<CR>
-func FormatCode()
-	if &filetype == 'c' || &filetype == 'h' || &filetype == 'cpp' || &filetype == 'cc' || &filetype == 'hpp'
-		exec "!astyle --style=linux --suffix=none %"
-	elseif &filetype == 'java'
-		exec "!astyle --style=java --suffix=none %"
+map ffl :call FormatC()<CR>
+func FormatC()
+	if &filetype == 'c' || &filetype == 'h'
+		exec "!astyle --style=linux --suffix=none  --indent=force-tab=4  %"
+	endif
+endfunc
+map ffn :call FormatCPP()<CR>
+func FormatCPP()
+	if &filetype == 'cpp' || &filetype == 'h'
+		exec "!astyle --style=google --suffix=none %"
+	endif
+endfunc
+map ffj :call FormatJAVA()<CR>:
+func FormatJAVA()
+	if &filetype == 'java'
+		exec "!astyle --style=google --suffix=none  %"
 	endif
 endfunc
 
