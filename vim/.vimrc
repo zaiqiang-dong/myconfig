@@ -2,14 +2,14 @@
 " Vim config manage by github.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nu
-"set tabstop=4
-"set softtabstop=4
+set expandtab
+set tabstop=4
 "set shiftwidth=4
 "set autoindent
 "set smartindent
 
 autocmd FileType c setlocal noexpandtab tabstop=4
-autocmd FileType cpp,java setlocal expandtab tabstop=4
+autocmd FileType cpp,java,python setlocal expandtab tabstop=4
 
 set foldenable
 set foldmethod=marker
