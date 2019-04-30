@@ -2,14 +2,14 @@
 " Vim config manage by github.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nu
-set expandtab
-set tabstop=4
-"set shiftwidth=4
-"set autoindent
+" set expandtab
+" set tabstop=4
 "set smartindent
 
 autocmd FileType c setlocal noexpandtab tabstop=4
 autocmd FileType cpp,java,python setlocal expandtab tabstop=4
+set autoindent
+set shiftwidth=4
 
 set foldenable
 set foldmethod=marker
@@ -40,6 +40,12 @@ if has("cscope")
 " add any database in current directory
 if filereadable("cscope.out")
 	cs add cscope.out
+else
+	let cscope_file=findfile("cscope.out",".;")
+	let cscope_pre=matchstr(cscope_file,".*/")
+	if !empty(cscope_file)&&filereadable(cscope_file)
+	       exe "cs add" cscope_file  cscope_pre
+	endif
 endif
 	set csverb
 endif
@@ -84,7 +90,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map ffl :call FormatC()<CR>
 func FormatC()
 	if &filetype == 'c' || &filetype == 'h'
-		exec "!astyle --style=linux --suffix=none  --indent=force-tab=4  %"
+		exec "!astyle --style=linux --suffix=none  --indent=force-tab=4 --pad-comma --align-reference=name --break-blocks %"
 	endif
 endfunc
 map ffn :call FormatCPP()<CR>
@@ -115,3 +121,5 @@ let g:rainbow_active = 1
 "better_whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:better_whitespace_enabled=1
+
+
