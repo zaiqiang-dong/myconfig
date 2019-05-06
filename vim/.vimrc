@@ -38,6 +38,8 @@ if has("cscope")
    set cst
    set nocsverb
 " add any database in current directory
+
+set tags=tags;
 if filereadable("cscope.out")
 	cs add cscope.out
 else
