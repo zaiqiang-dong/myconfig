@@ -6,8 +6,12 @@ set nu
 " set tabstop=4
 "set smartindent
 
+set enc=utf-8
+set fenc=utf-8
+set fencs=utf-8
+
 autocmd FileType c setlocal noexpandtab tabstop=4
-autocmd FileType cpp,java,python setlocal expandtab tabstop=4
+autocmd FileType cpp,java,python,javascript setlocal expandtab tabstop=4
 set autoindent
 set shiftwidth=4
 
@@ -108,6 +112,13 @@ func FormatJAVA()
 	endif
 endfunc
 
+map ffp :call FormatPYTHON()<CR>:
+func FormatPYTHON()
+	if &filetype == 'python'
+		exec "!yapf -p --style='{based_on_style: chromium, indent_width: 4}' -i %"
+	endif
+endfunc
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "rianbow
@@ -125,3 +136,7 @@ let g:rainbow_active = 1
 let g:better_whitespace_enabled=1
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"javacript code jsbeautiful
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map ffs :call g:Jsbeautify()
