@@ -8,3 +8,6 @@ sudo apt-get install android-platform-tools-base
 sudo apt-get install android-tools-adb
 sudo apt-get install android-tools-fastboot
 sudo cp ./rules.d/* /etc/udev/rules.d/
+sudo snap install universal-ctags
+sudo apt install python3-pip
+pip3 install --user pynvim

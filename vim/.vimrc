@@ -19,19 +19,50 @@ set foldenable
 set foldmethod=marker
 filetype plugin indent on
 syntax enable
-colorscheme tt_vim
+colorscheme mycolor
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
        \| exe "normal g'\"" | endif
 endif
 
-nmap dp d^
-nmap da d$
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " leader setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = "."
+let mapleader = ","
+
+nmap dp d^
+nmap da d$
+
+nmap <leader>h : set hlsearch<CR>
+nmap <leader>c : set nohlsearch<CR>
+
+nmap ffl :call FormatC()<CR>
+func FormatC()
+	if &filetype == 'c' || &filetype == 'h'
+		exec "!astyle --style=linux --suffix=none  --indent=force-tab=4 --pad-comma --align-reference=name --break-blocks %"
+	endif
+endfunc
+nmap ffn :call FormatCPP()<CR>
+func FormatCPP()
+	if &filetype == 'cpp' || &filetype == 'h'
+		exec "!astyle --style=google --suffix=none %"
+	endif
+endfunc
+nmap ffj :call FormatJAVA()<CR>:
+func FormatJAVA()
+	if &filetype == 'java'
+		exec "!astyle --style=google --suffix=none  %"
+	endif
+endfunc
+
+nmap ffp :call FormatPYTHON()<CR>:
+func FormatPYTHON()
+	if &filetype == 'python'
+		exec "!yapf -p --style='{based_on_style: chromium, indent_width: 4}' -i %"
+	endif
+endfunc
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
@@ -71,54 +102,23 @@ let Tlist_Auto_Open=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nerdcommenter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDSpaceDelims=1
-let NERDCompactSexyComs=1
-let g:NERDDefaultAlign = 'left'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"mru
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>r :MRU<cr>
-let g:MRU_Window_Height=30
-let g:MRU_Max_Menu_Entries=20
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nredtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
 let g:NERDTreeWinSize=100
 let g:NERDTreeWinPos='right'
 let g:NERDTreeQuitOnOpen=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-map ffl :call FormatC()<CR>
-func FormatC()
-	if &filetype == 'c' || &filetype == 'h'
-		exec "!astyle --style=linux --suffix=none  --indent=force-tab=4 --pad-comma --align-reference=name --break-blocks %"
-	endif
-endfunc
-map ffn :call FormatCPP()<CR>
-func FormatCPP()
-	if &filetype == 'cpp' || &filetype == 'h'
-		exec "!astyle --style=google --suffix=none %"
-	endif
-endfunc
-map ffj :call FormatJAVA()<CR>:
-func FormatJAVA()
-	if &filetype == 'java'
-		exec "!astyle --style=google --suffix=none  %"
-	endif
-endfunc
-
-map ffp :call FormatPYTHON()<CR>:
-func FormatPYTHON()
-	if &filetype == 'python'
-		exec "!yapf -p --style='{based_on_style: chromium, indent_width: 4}' -i %"
-	endif
-endfunc
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"ctrlp
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "rianbow
@@ -135,8 +135,55 @@ let g:rainbow_active = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:better_whitespace_enabled=1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>t :TagbarToggle<CR>
+let g:tagbar_left=1
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"javacript code jsbeautiful
+"deoplete.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map ffs :call g:Jsbeautify()
+
+let g:deoplete#enable_at_startup = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"python-mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:pymode_python='python3'
+let g:pymode_trim_whitespaces=1
+let g:pymode_doc=1
+let g:pymode_doc_bind='K'
+let g:pymode_rope_goto_definition_bind="<C-]>"
+let g:pymode_lint=1
+let g:pymode_lint_checkers=['pyflakes','pep8', 'mccabe', 'pylint']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-startify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'yggdroot/indentline'
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'tpope/vim-commentary'
+Plug 'luochen1990/rainbow'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
