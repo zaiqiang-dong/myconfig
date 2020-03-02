@@ -36,6 +36,8 @@ nmap da d$
 nmap <leader>h : set hlsearch<CR>
 nmap <leader>c : set nohlsearch<CR>
 
+nmap ww <C-w>w
+
 nmap ffl :call FormatC()<CR>
 func FormatC()
 	if &filetype == 'c' || &filetype == 'h'
@@ -99,6 +101,7 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Ctags_Cmd="/usr/bin/ctags"
 let Tlist_Auto_Open=1
+"set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,7 +109,7 @@ let Tlist_Auto_Open=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>
-let g:NERDTreeWinSize=100
+let g:NERDTreeWinSize=60
 let g:NERDTreeWinPos='right'
 let g:NERDTreeQuitOnOpen=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -124,12 +127,12 @@ let g:ctrlp_custom_ignore = {
 "rianbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
-	let g:rainbow_conf = {
-	\	'guifgs': ['magenta', 'cyan', 'red', 'brown'],
-	\	'ctermfgs': ['magenta', 'cyan', 'red', 'brown'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\}
+let g:rainbow_conf = {
+\	'guifgs': ['magenta', 'cyan', 'red', 'brown'],
+\	'ctermfgs': ['magenta', 'cyan', 'red', 'brown'],
+\	'operators': '_,_',
+\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "better_whitespace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,17 +150,53 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "python-mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pymode_python='python3'
-let g:pymode_trim_whitespaces=1
-let g:pymode_doc=1
-let g:pymode_doc_bind='K'
-let g:pymode_rope_goto_definition_bind="<C-]>"
-let g:pymode_lint=1
-let g:pymode_lint_checkers=['pyflakes','pep8', 'mccabe', 'pylint']
+
+let g:pymode = 1
+let g:pymode_warnings = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 1
+let g:pymode_options_colorcolumn = 0
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 10
+let g:pymode_python = 'python3'
+let g:pymode_indent = 1
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
+let g:pymode_virtualenv = 1
+let g:pymode_run = 0
+let g:pymode_breakpoint = 0
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_lint_cwindow = 0
+let g:pymode_lint_signs = 1
+let g:pymode_lint_todo_symbol = 'WW'
+let g:pymode_lint_comment_symbol = 'CC'
+let g:pymode_lint_visual_symbol = 'RR'
+let g:pymode_lint_error_symbol = 'EE'
+let g:pymode_lint_info_symbol = 'II'
+let g:pymode_lint_pyflakes_symbol = 'FF'
+let g:pymode_rope = 1
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_show_doc_bind = '<C-c>d'
+let g:pymode_rope_regenerate_on_write = 1
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_completion_bind = '<C-n>'
+let g:pymode_rope_goto_definition_bind = '<C-]>'
+let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_rope_rename_bind = '<C-c>rr'
+let g:pymode_rope_rename_module_bind = '<C-c>r1r'
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
@@ -166,7 +205,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'yggdroot/indentline'
+Plug 'yggdroot/indentline'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
@@ -182,6 +221,7 @@ endif
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'deoplete-plugins/deoplete-jedi'
 
 call plug#end()
 
