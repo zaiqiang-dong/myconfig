@@ -11,3 +11,4 @@ sudo cp ./rules.d/* /etc/udev/rules.d/
 sudo snap install universal-ctags
 sudo apt install python3-pip
 pip3 install --user pynvim
+sudo aptitude install python-flake8 python3-flake8 flake flake8
