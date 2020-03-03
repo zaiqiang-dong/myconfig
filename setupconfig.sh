@@ -1,5 +1,5 @@
 cp -r ./back ~
-sudo apt-get install vim-gnome
+#sudo apt-get install vim-gnome
 sudo apt-get install openjdk-8-jdk
 sudo apt-get install gnome-terminal
 sudo apt-get install ctags cscope
@@ -11,4 +11,12 @@ sudo cp ./rules.d/* /etc/udev/rules.d/
 sudo snap install universal-ctags
 sudo apt install python3-pip
 pip3 install --user pynvim
-sudo aptitude install python-flake8 python3-flake8 flake flake8
+sudo apt install python-flake8 python3-flake8 flake flake8
+
+#install neovim
+sudo apt-get install software-properties-common
+sudo apt update
+sudo apt install -y neovim
+
+#add neovim config
+cp ./nvim ~/.config/ -r
