@@ -10,11 +10,20 @@ sudo apt-get install android-tools-fastboot
 sudo cp ./rules.d/* /etc/udev/rules.d/
 sudo snap install universal-ctags
 sudo apt install python3-pip
-pip3 install --user pynvim
+sudo apt install python-pip
+
+pip3 install pynvim
+pip install pynvim
+pip install jedi
+pip3 install jedi
+pip install neovim
+pip3 install neovim
+
 sudo apt install python-flake8 python3-flake8 flake flake8
 
 #install neovim
 sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
 sudo apt install -y neovim
 
@@ -23,4 +32,6 @@ cp ./nvim ~/.config/ -r
 #add clang tools 
 sudo apt-get install clang-tools-8
 sudo ln -s /usr/bin/clangd-8 /usr/bin/clangd
+
+
 
