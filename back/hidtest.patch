@@ -1,0 +1,365 @@
+diff --git a/arch/arm64/configs/sdm845-perf_defconfig b/arch/arm64/configs/sdm845-perf_defconfig
+index e510ee4..f443af1 100644
+--- a/arch/arm64/configs/sdm845-perf_defconfig
++++ b/arch/arm64/configs/sdm845-perf_defconfig
+@@ -624,3 +624,4 @@ CONFIG_CRYPTO_AES_ARM64_NEON_BLK=y
+ CONFIG_CRYPTO_CRC32_ARM64=y
+ CONFIG_QMI_ENCDEC=y
+ CONFIG_HIDRAW=y
++CONFIG_DEVMEM=y
+diff --git a/arch/arm64/configs/sdm845_defconfig b/arch/arm64/configs/sdm845_defconfig
+index 208be85..d5c8bb2 100644
+--- a/arch/arm64/configs/sdm845_defconfig
++++ b/arch/arm64/configs/sdm845_defconfig
+@@ -693,3 +693,4 @@ CONFIG_QMI_ENCDEC=y
+ CONFIG_HIDRAW=y
+ #DTS_EAGLE
+ CONFIG_DTS_EAGLE=y
++CONFIG_DEVMEM=y
+diff --git a/drivers/hid/hidraw.c b/drivers/hid/hidraw.c
+index 216f033..d8f2de6 100644
+--- a/drivers/hid/hidraw.c
++++ b/drivers/hid/hidraw.c
+@@ -38,6 +38,8 @@
+ 
+ #include <linux/hidraw.h>
+ 
++extern void show_signal(u8 *data, int t);
++
+ static int hidraw_major;
+ static struct cdev hidraw_cdev;
+ static struct class *hidraw_class;
+@@ -489,6 +491,17 @@ int hidraw_report_event(struct hid_device *hid, u8 *data, int len)
+ 	int ret = 0;
+ 	unsigned long flags;
+ 
++	u8 sbuf[6] = {'\0'};
++	if(len >= 128) {
++		sbuf[0] = data[61];
++		sbuf[1] = data[60];
++		sbuf[2] = data[65];
++		sbuf[3] = data[64];
++		sbuf[4] = data[69];
++		sbuf[5] = data[68];
++		show_signal(sbuf, 1000);
++	}
++
+ 	spin_lock_irqsave(&dev->list_lock, flags);
+ 	list_for_each_entry(list, &dev->list, node) {
+ 		int new_head = (list->head + 1) & (HIDRAW_BUFFER_SIZE - 1);
+diff --git a/drivers/misc/joy_addr.c b/drivers/misc/joy_addr.c
+index 7f84be7..d22acd9 100644
+--- a/drivers/misc/joy_addr.c
++++ b/drivers/misc/joy_addr.c
+@@ -18,6 +18,7 @@
+ #include <linux/timex.h>
+ #include <linux/rtc.h>
+ #include <linux/wait.h>
++#include <linux/io.h>
+ 
+ #define TAG "JOY-LOG :"
+ #ifdef DEBUG
+@@ -43,8 +44,8 @@ struct joy_addr_data {
+ 	u32 version;
+ 	int gpio_irq_start;
+ 	unsigned int irq_start;
+-	struct hrtimer joy_addr_timer;
+-	struct hrtimer watch_timer;
++	struct hrtimer a_timer;
++	struct hrtimer b_timer;
+ 	int t_flag;
+ 	int timing_count;
+ 	int old_timing_count;
+@@ -54,120 +55,85 @@ struct joy_addr_data {
+ 	struct pinctrl *gpio_pinctrl;
+ 	struct pinctrl_state *pinctrl_state_active;
+ 	struct pinctrl_state *pinctrl_state_suspend;
++	void __iomem *gpio_base;
+ 
+ };
+ 
+-static enum hrtimer_restart joy_addr_watch_timer(struct hrtimer *timer)
++static struct joy_addr_data *joy_addr;
++
++static int i = 0;
++static int j = 0;
++
++static u8 sbuf[6] = {'\0'};
++static int interval = 100;
++
++static enum hrtimer_restart joy_addr_a_timer(struct hrtimer *timer)
+ {
+-	struct joy_addr_data *joy_addr = container_of(timer, struct joy_addr_data, watch_timer);
+-	JOY_LOGI("watch time work.");
+-	if(joy_addr->old_timing_count < joy_addr->timing_count) {
+-		hrtimer_forward_now(timer, ms_to_ktime(HTIMER_WATCH_INTERVAL));
+-		joy_addr->old_timing_count = joy_addr->timing_count;
+-	} else {
+-		JOY_LOGE("Transfor is interrupt. old time count is %d and timing count =%d.", joy_addr->old_timing_count, joy_addr->timing_count);
+-		joy_addr->t_flag = 0;
+-		joy_addr->old_timing_count = 0;
+-		joy_addr->timing_count = 0;
+-		return HRTIMER_NORESTART;
++	if(!(i == 5 && j == 1)) {
++		hrtimer_start(&joy_addr->b_timer, ns_to_ktime(interval),
++					  HRTIMER_MODE_REL);
+ 	}
+-	if(joy_addr->timing_count >= 57) {
+-		return HRTIMER_NORESTART;
++
++	if((1<<j)&sbuf[i]) {
++		//gpio_set_value(joy_addr->gpio_irq_start, 1);
++		writel(0x3, joy_addr->gpio_base+4);
+ 	} else {
+-		return HRTIMER_RESTART;
++		//gpio_set_value(joy_addr->gpio_irq_start, 0);
++		writel(0x0, joy_addr->gpio_base+4);
+ 	}
+-}
+-
+-static enum hrtimer_restart joy_addr_hap_timer(struct hrtimer *timer)
+-{
+-	struct joy_addr_data *joy_addr = container_of(timer, struct joy_addr_data, joy_addr_timer);
+-	int value = gpio_get_value(joy_addr->gpio_irq_start);
+-
+-	if((joy_addr->timing_count <= 56) && (joy_addr->timing_count > 0) ) {
+-		JOY_LOGI("hrtimer server func and line state is :%d count= %d.", value, joy_addr->timing_count);
+-		joy_addr->tmp = (joy_addr->tmp << 1) | value;
+-	} else if(joy_addr->timing_count == 0) {
+-		joy_addr->old_timing_count = 0;
+-		if(value == 0) {
+-			JOY_LOGI("START ---> line state is :%d .", value);
+-			joy_addr->t_flag = 1;
+-			hrtimer_cancel(&joy_addr->watch_timer);
+-			hrtimer_start(&joy_addr->watch_timer, ms_to_ktime(HTIMER_WATCH_INTERVAL), HRTIMER_MODE_REL);
+-		} else {
+-			JOY_LOGE("error start signal.");
+-			hrtimer_cancel(&joy_addr->watch_timer);
+-			joy_addr->t_flag = 0;
+-			joy_addr->timing_count = 0;
+-			return HRTIMER_NORESTART;
+-		}
+-	} else if(joy_addr->timing_count == 57) {
+-		if(value == 0) {
+-			JOY_LOGI("END ---> line state is :%d .", value);
+-			disable_irq(joy_addr->irq_start);
+-			hrtimer_cancel(&joy_addr->watch_timer);
+-			joy_addr->t_flag = 0;
+-			joy_addr->old_timing_count = 0;
+-			joy_addr->timing_count = 0;
+-
+-			joy_addr->tmp_addr[0] = joy_addr->tmp >> 48;
+-			joy_addr->tmp_addr[1] = joy_addr->tmp >> 40;
+-			joy_addr->tmp_addr[2] = joy_addr->tmp >> 32;
+-			joy_addr->tmp_addr[3] = joy_addr->tmp >> 24;
+-			joy_addr->tmp_addr[4] = joy_addr->tmp >> 16;
+-			joy_addr->tmp_addr[5] = joy_addr->tmp >> 8;
+-			joy_addr->tmp_addr[6] = joy_addr->tmp;
+-
+-			if((joy_addr->tmp_addr[0] ^ joy_addr->tmp_addr[1] ^ joy_addr->tmp_addr[2] ^
+-				joy_addr->tmp_addr[3] ^ joy_addr->tmp_addr[4] ^ joy_addr->tmp_addr[5]) == joy_addr->tmp_addr[6]) {
+-				joy_addr->addr[0] = joy_addr->tmp_addr[0];
+-				joy_addr->addr[1] = joy_addr->tmp_addr[1];
+-				joy_addr->addr[2] = joy_addr->tmp_addr[2];
+-				joy_addr->addr[3] = joy_addr->tmp_addr[3];
+-				joy_addr->addr[4] = joy_addr->tmp_addr[4];
+-				joy_addr->addr[5] = joy_addr->tmp_addr[5];
+-				gpio_direction_output(joy_addr->gpio_irq_start, 0);
+-				mdelay(20);
+-				gpio_direction_output(joy_addr->gpio_irq_start, 1);
+-				gpio_direction_input(joy_addr->gpio_irq_start);
+-				JOY_LOGE("verity success, get addr = %x:%x:%x:%x:%x:%x.", joy_addr->addr[0], joy_addr->addr[1]
+-						 , joy_addr->addr[2], joy_addr->addr[3] , joy_addr->addr[4], joy_addr->addr[5]);
+-			} else {
+-				JOY_LOGE("the verify value error.");
+-			}
+-
+-			enable_irq(joy_addr->irq_start);
+-		} else {
+-			JOY_LOGE("error end signal.");
+-		}
+-		return HRTIMER_NORESTART;
++	if(j == 0) {
++		j = 7;
++		i++;
++	} else {
++		j--;
+ 	}
+-	joy_addr->timing_count++;
+ 	return HRTIMER_NORESTART;
+ }
+ 
+-static irqreturn_t joy_addr_irq_fun(int irq, void *data)
++static enum hrtimer_restart joy_addr_b_timer(struct hrtimer *timer)
+ {
+-	struct joy_addr_data *joy_addr = data;
+-	hrtimer_cancel(&joy_addr->joy_addr_timer);
+-	if((joy_addr->timing_count <= 56) && (joy_addr->timing_count > 0) && (joy_addr->t_flag == 1)) {
+-		hrtimer_start(&joy_addr->joy_addr_timer, ms_to_ktime(HTIMER_TIMING_BIT),
+-					  HRTIMER_MODE_REL);
+-	} else if(joy_addr->timing_count == 0) {
+-		hrtimer_start(&joy_addr->joy_addr_timer, ms_to_ktime(HTIMER_TIMING_START),
+-					  HRTIMER_MODE_REL);
+-	} else if (joy_addr->timing_count == 57) {
+-		hrtimer_start(&joy_addr->joy_addr_timer, ms_to_ktime(HTIMER_TIMING_END),
++	if(!(i == 5 && j == 0)) {
++		hrtimer_start(&joy_addr->a_timer, ns_to_ktime(interval),
+ 					  HRTIMER_MODE_REL);
+ 	}
+-	return IRQ_HANDLED;
++	if((1<<j)&sbuf[i]) {
++		//gpio_set_value(joy_addr->gpio_irq_start, 1);
++		writel(0x3, joy_addr->gpio_base+4);
++	} else {
++		//gpio_set_value(joy_addr->gpio_irq_start, 0);
++		writel(0x0, joy_addr->gpio_base+4);
++	}
++	if(j == 0) {
++		j = 7;
++		i++;
++	} else {
++		j--;
++	}
++	return HRTIMER_NORESTART;
+ }
+ 
++/* static irqreturn_t joy_addr_irq_fun(int irq, void *data) */
++/* { */
++	/* struct joy_addr_data *joy_addr = data; */
++	/* hrtimer_cancel(&joy_addr->joy_addr_timer); */
++	/* if((joy_addr->timing_count <= 56) && (joy_addr->timing_count > 0) && (joy_addr->t_flag == 1)) { */
++		/* hrtimer_start(&joy_addr->joy_addr_timer, ms_to_ktime(HTIMER_TIMING_BIT), */
++					  /* HRTIMER_MODE_REL); */
++	/* } else if(joy_addr->timing_count == 0) { */
++		/* hrtimer_start(&joy_addr->joy_addr_timer, ms_to_ktime(HTIMER_TIMING_START), */
++					  /* HRTIMER_MODE_REL); */
++	/* } else if (joy_addr->timing_count == 57) { */
++		/* hrtimer_start(&joy_addr->joy_addr_timer, ms_to_ktime(HTIMER_TIMING_END), */
++					  /* HRTIMER_MODE_REL); */
++	/* } */
++	/* return IRQ_HANDLED; */
++/* } */
++
+ 
+ static ssize_t joy_addr_reg_show(struct device *dev,
+ 								 struct device_attribute *attr, char *buf)
+ {
+ 	ssize_t ret = 0;
+-	struct joy_addr_data *joy_addr= dev_get_drvdata(dev);
+ 	JOY_LOGE("read.");
+ 	ret = sprintf(buf, "%02x:%02x:%02x:%02x:%02x:%02x\n", joy_addr->addr[0], joy_addr->addr[1], joy_addr->addr[2] ,
+ 				   joy_addr->addr[3], joy_addr->addr[4], joy_addr->addr[5]);
+@@ -177,23 +143,54 @@ static ssize_t joy_addr_reg_show(struct device *dev,
+ 	joy_addr->addr[3] = 0x00;
+ 	joy_addr->addr[4] = 0x00;
+ 	joy_addr->addr[5] = 0x00;
++	dump_stack();
+ 	return ret;
+ }
+ 
++void show_signal(u8 *data, int t){
++	int i = 0;
++	int j = 0;
++	gpio_direction_output(joy_addr->gpio_irq_start, 1);
++	for(i = 0; i < 6; i++) {
++		for(j = 7; j >= 0; j--) {
++			if((1<<j)&data[i]) {
++				writel(0x3, joy_addr->gpio_base+4);
++			} else {
++				writel(0x0, joy_addr->gpio_base+4);
++			}
++			//ndelay(t);
++		}
++	}
++	gpio_direction_output(joy_addr->gpio_irq_start, 1);
++	/* interval = t; */
++	/* i = 0; */
++	/* j = 7; */
++	/* sbuf[0] = data[0]; */
++	/* sbuf[1] = data[1]; */
++	/* sbuf[2] = data[2]; */
++	/* sbuf[3] = data[3]; */
++	/* sbuf[4] = data[4]; */
++	/* sbuf[5] = data[5]; */
++	/* gpio_direction_output(joy_addr->gpio_irq_start, 0); */
++	/* gpio_direction_output(joy_addr->gpio_irq_start, 1); */
++	/* udelay(100); */
++	/* hrtimer_start(&joy_addr->a_timer, ns_to_ktime(interval), */
++					  /* HRTIMER_MODE_REL); */
++	return;
++}
++EXPORT_SYMBOL_GPL(show_signal);
++
+ static ssize_t joy_addr_reg_store(struct device *dev,
+ 								  struct device_attribute *attr, const char *buf, size_t count)
+ {
+-	struct joy_addr_data *joy_addr= dev_get_drvdata(dev);
+-
+-	disable_irq(joy_addr->irq_start);
+-	gpio_direction_output(joy_addr->gpio_irq_start, 0);
+-	mdelay(20);
+-	gpio_direction_output(joy_addr->gpio_irq_start, 1);
+-	gpio_direction_input(joy_addr->gpio_irq_start);
+-	enable_irq(joy_addr->irq_start);
++	int val = 100;
++	u8 aa[6] = {0x55, 0x55, 0x55, 0x55, 0x55, 0x55};
++	sscanf(buf, "%d", &val);
++	show_signal(aa, val);
+ 	return count;
+ }
+ 
++
+ static DEVICE_ATTR(reg, 0444,
+ 				   joy_addr_reg_show, joy_addr_reg_store);
+ 
+@@ -260,7 +257,7 @@ static int joy_addr_gpio_ctrl(struct joy_addr_data *joy_addr, bool on)
+ 						joy_addr->gpio_irq_start, error);
+ 				return error;
+ 			}
+-			error = gpio_direction_input(joy_addr->gpio_irq_start);
++			error = gpio_direction_output(joy_addr->gpio_irq_start, 1);
+ 			if (error) {
+ 				dev_err(&joy_addr->pdev->dev,
+ 						"unable to set dir for %d gpio(%d)\n",
+@@ -284,8 +281,7 @@ static int joy_addr_gpio_ctrl(struct joy_addr_data *joy_addr, bool on)
+ static int joy_addr_probe(struct platform_device *pdev)
+ {
+ 	int ret;
+-	unsigned long irq_flags;
+-	struct joy_addr_data *joy_addr;
++	/* unsigned long irq_flags; */
+ 
+ 	JOY_LOGI("joy addr probe start.");
+ 	joy_addr = devm_kzalloc(&pdev->dev, sizeof(*joy_addr), GFP_KERNEL);
+@@ -300,20 +296,21 @@ static int joy_addr_probe(struct platform_device *pdev)
+ 	joy_addr->t_flag = 0;
+ 	joy_addr->timing_count = 0;
+ 	joy_addr_gpio_ctrl(joy_addr, 1);
+-	joy_addr->irq_start = gpio_to_irq(joy_addr->gpio_irq_start);
++	/* joy_addr->irq_start = gpio_to_irq(joy_addr->gpio_irq_start); */
+ 
+-	irq_flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
+-	ret = request_threaded_irq(joy_addr->irq_start, joy_addr_irq_fun, NULL,
+-							   irq_flags, "joy-addr", joy_addr);
+-	if (ret)
+-		JOY_LOGE("Failed to reques irq start\n");
++	/* irq_flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT; */
++	/* ret = request_threaded_irq(joy_addr->irq_start, joy_addr_irq_fun, NULL, */
++							   /* irq_flags, "joy-addr", joy_addr); */
++	/* if (ret) */
++		/* JOY_LOGE("Failed to reques irq start\n"); */
+ 
+-	hrtimer_init(&joy_addr->joy_addr_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+-	joy_addr->joy_addr_timer.function = joy_addr_hap_timer;
++	hrtimer_init(&joy_addr->a_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	joy_addr->a_timer.function = joy_addr_a_timer;
+ 
+-	hrtimer_init(&joy_addr->watch_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+-	joy_addr->watch_timer.function = joy_addr_watch_timer;
++	hrtimer_init(&joy_addr->b_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	joy_addr->b_timer.function = joy_addr_b_timer;
+ 	platform_set_drvdata(pdev, joy_addr);
++	joy_addr->gpio_base = ioremap(0x0393b000, 0x1000);
+ 	ret = sysfs_create_group(&pdev->dev.kobj, &joy_addr_attr_group);
+ 	if(ret)
+ 		JOY_LOGE("creat sysfs group faild.");

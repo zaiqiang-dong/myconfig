@@ -20,3 +20,7 @@ sudo apt install -y neovim
 
 #add neovim config
 cp ./nvim ~/.config/ -r
+#add clang tools 
+sudo apt-get install clang-tools-8
+sudo ln -s /usr/bin/clangd-8 /usr/bin/clangd
+
