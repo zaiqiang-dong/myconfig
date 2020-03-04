@@ -17,11 +17,18 @@ filetype plugin indent on
 syntax enable
 colorscheme mycolor
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" auto cmd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
        \| exe "normal g'\"" | endif
 endif
 
+"autocmd VimEnter * PlugUpdate 
+"autocmd VimEnter * CocUpdate 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " leader and map
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -53,12 +60,25 @@ nmap cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap ci :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
 nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+"map for CocList command
+nmap <Space>g :CocList grep<CR>
+nmap <Space>f :CocList files<CR>
+
+
+nmap <F2> :call CreateCTag()<CR>
+nmap <F3> :call CreatePythonTag()<CR>
+
 
 "for format code ,use astyle
 nmap ffl :call FormatC()<CR>
 nmap ffn :call FormatCPP()<CR>
-nmap ffj :call FormatJAVA()<CR>:
-nmap ffp :call FormatPYTHON()<CR>:
+nmap ffj :call FormatJAVA()<CR>
+nmap ffp :call FormatPYTHON()<CR>
+
+"map for highlight
+
+nmap <Space>h : set hlsearch<CR>
+nmap <Space>c : set nohlsearch<CR>
 
 "copy selected code
 vmap <C-c> "+y
@@ -89,6 +109,17 @@ func FormatPYTHON()
 	if &filetype == 'python'
 		exec "!yapf -p --style='{based_on_style: chromium, indent_width: 4}' -i %"
 	endif
+endfunc
+
+
+func CreatePythonTag()
+	silent exec "!find  . -name \*.py | xargs ~/.config/nvim/ptags"
+	set tags=tags;
+endfunc
+
+func CreateCTag()
+	silent exec "!ctags -R;"
+	set tags=tags;
 endfunc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -210,6 +241,15 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 "let g:pymode_syntax_all = 1
 "let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 "let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc-nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
+	    \		     'coc-python', 'coc-snippets', 'coc-pairs',
+	    \		     'coc-git', 'coc-ultisnips', 'coc-word',
+	    \		     'coc-neosnippet']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
