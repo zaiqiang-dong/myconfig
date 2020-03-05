@@ -15,8 +15,12 @@ sudo snap install universal-ctags
 sudo apt-get install ctags cscope
 
 #nodejs
-curl -sL install-node.now.sh/lts | bash
-
+sudo apt-get install nodejs
+sudo apt install nodejs-legacy
+sudo apt install npm
+sudo npm config set registry https://registry.npm.taobao.org
+sudo npm install n -g
+sudo n stable
 #python
 sudo apt install python3-pip
 sudo apt install python-pip
@@ -40,6 +44,10 @@ cp ./nvim ~/.config/ -r
 #add clang tools 
 sudo apt-get install clang-tools-8
 sudo ln -s /usr/bin/clangd-8 /usr/bin/clangd
+
+
+#for ssh config
+cp ./config ~/.ssh/
 
 
 
