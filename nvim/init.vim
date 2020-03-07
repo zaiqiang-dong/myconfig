@@ -119,7 +119,7 @@ endfunc
 
 
 func CreateCTag()
-	silent exec "!find -iname \*.c -o  -iname \*.cpp -o -iname \*.h -o -iname \*.hpp -o -iname \*.java > cscope.files"
+	silent exec "!find -iname \*.c -o  -iname \*.cpp -o -iname \*.h -o -iname \*.hpp -o -iname \*.java -o -iname \*.S -o -iname \*.s > cscope.files"
 	silent exec "!cscope -Rbqk"
 	silent exec "!ctags -R;"
 	if filereadable("cscope.out")
