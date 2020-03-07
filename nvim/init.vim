@@ -117,10 +117,16 @@ func CreatePythonTag()
 	set tags=tags;
 endfunc
 
+
 func CreateCTag()
+	silent exec "!find -iname \*.c -o  -iname \*.cpp -o -iname \*.h -o -iname \*.hpp -o -iname \*.java > cscope.files"
+	silent exec "!cscope -Rbqk"
 	silent exec "!ctags -R;"
-	set tags=tags;
+	if filereadable("cscope.out")
+	    cs add cscope.out
+	set tags=tags
 endfunc
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
