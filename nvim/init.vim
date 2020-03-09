@@ -123,7 +123,9 @@ func CreateCTag()
 	silent exec "!cscope -Rbqk"
 	silent exec "!ctags -R;"
 	if filereadable("cscope.out")
+	    set nocscopeverbose
 	    cs add cscope.out
+	endif
 	set tags=tags
 endfunc
 
