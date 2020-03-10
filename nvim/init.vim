@@ -285,6 +285,7 @@ Plug 'luochen1990/rainbow'
 "Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wsdjeg/FlyGrep.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
