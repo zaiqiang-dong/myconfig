@@ -1,4 +1,3 @@
-cp -r ./back ~
 #sudo apt-get install vim-gnome
 
 #for java
