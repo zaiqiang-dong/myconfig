@@ -53,3 +53,6 @@ cp ./config ~/.ssh/
 #for open ssl
 sudo apt-get install openssl
 sudo apt-get install libssl-dev
+
+#for sphinx
+apt-get install python3-sphinx
