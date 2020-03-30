@@ -113,7 +113,7 @@ endfunc
 
 
 func CreatePythonTag()
-	silent exec "!find  . -name \*.py | xargs ~/.config/nvim/ptags"
+	silent exec "!find  . -name \*.py | xargs ~/.config/nvim/ptags "
 	set tags=tags;
 endfunc
 
@@ -278,6 +278,18 @@ nmap rn <Plug>(coc-rename)
 nmap rr <Plug>(coc-refactor)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc-nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Echo translation in the cmdline
+nmap <silent> <Leader>t <Plug>Translate
+vmap <silent> <Leader>t <Plug>TranslateV
+" Display translation in a window
+nmap <silent> <Leader>w <Plug>TranslateW
+vmap <silent> <Leader>w <Plug>TranslateWV
+" Replace the text with translation
+nmap <silent> <Leader>r <Plug>TranslateR
+vmap <silent> <Leader>r <Plug>TranslateRV
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
@@ -304,6 +316,7 @@ Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'voldikss/vim-translator'
 
 call plug#end()
 
