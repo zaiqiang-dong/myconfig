@@ -257,7 +257,7 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
 	    \		     'coc-python', 'coc-snippets', 'coc-pairs',
 	    \		     'coc-git', 'coc-ultisnips', 'coc-word',
-	    \		     'coc-neosnippet']
+	    \		     'coc-neosnippet', 'coc-clangd']
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
