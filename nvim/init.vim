@@ -17,6 +17,8 @@ filetype plugin indent on
 syntax enable
 colorscheme mycolor
 
+set cursorline
+set cursorcolumn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto cmd
