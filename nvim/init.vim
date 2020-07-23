@@ -82,6 +82,9 @@ nmap ffp :call FormatPYTHON()<CR>
 nmap <Space>h : set hlsearch<CR>
 nmap <Space>c : set nohlsearch<CR>
 
+"tagbar show
+nmap <F8> : TagbarToggle<CR>
+
 "copy selected code
 vmap <C-c> "+y
 
