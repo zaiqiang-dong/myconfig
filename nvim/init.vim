@@ -18,7 +18,7 @@ syntax enable
 colorscheme mycolor
 
 set cursorline
-set cursorcolumn
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto cmd
@@ -87,6 +87,12 @@ nmap <F8> : TagbarToggle<CR>
 
 "copy selected code
 vmap <C-c> "+y
+
+"highlight Functions
+syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
+syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
+hi cFunctions guifg=#ffbf00 guibg=NONE guisp=NONE gui=bold ctermfg=200 ctermbg=NONE cterm=bold
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function setting
@@ -262,17 +268,18 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
 	    \		     'coc-python', 'coc-snippets', 'coc-pairs',
 	    \		     'coc-git', 'coc-ultisnips', 'coc-word',
-	    \		     'coc-neosnippet', 'coc-clangd']
+	    \		     'coc-neosnippet','coc-clangd']
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -281,6 +288,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 nmap rn <Plug>(coc-rename)
 nmap rr <Plug>(coc-refactor)
+
+let g:coc_disable_startup_warning = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc-nvim
@@ -322,8 +331,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'voldikss/vim-translator'
+Plug 'rafalbromirski/vim-aurora'
+Plug 'srcery-colors/srcery-vim'
 
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
