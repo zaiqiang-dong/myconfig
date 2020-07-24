@@ -89,7 +89,7 @@ hi PMenu guifg=#ffffff guibg=#080808 guisp=#080808 gui=NONE ctermfg=45 ctermbg=N
 hi SpecialKey guifg=#5E6C70 guibg=NONE guisp=NONE gui=italic ctermfg=66 ctermbg=NONE cterm=NONE
 hi Constant guifg=#ffeb0a guibg=NONE guisp=NONE gui=bold ctermfg=220 ctermbg=NONE cterm=bold
 hi Tag guifg=#BD9800 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
-hi String guifg=#8a05ff guibg=NONE guisp=NONE gui=NONE ctermfg=130 ctermbg=NONE cterm=bold
+hi String guifg=#8a05ff guibg=NONE guisp=NONE gui=NONE ctermfg=201 ctermbg=NONE cterm=bold
 hi PMenuThumb guifg=NONE guibg=#a4a6a8 guisp=#a4a6a8 gui=NONE ctermfg=NONE ctermbg=248 cterm=NONE
 hi MatchParen guifg=#BD9800 guibg=NONE guisp=NONE gui=bold ctermfg=1 ctermbg=NONE cterm=bold
 hi Repeat guifg=#BD9800 guibg=NONE guisp=NONE gui=bold ctermfg=1 ctermbg=NONE cterm=bold
