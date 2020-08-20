@@ -56,5 +56,9 @@ sudo apt-get install libssl-dev
 #for sphinx
 apt-get install python3-sphinx
 
+#for termtosvg
+sudo pip3 install termtosvg
+sudo pip3 install pyte python-xlib svgwrite
+
 #for env config
 echo "export PATH=\$PATH:/home/zqdong/tools/android-ndk-r15c:/home/zqdong/.yarn/bin" >> ~/.bashrc
