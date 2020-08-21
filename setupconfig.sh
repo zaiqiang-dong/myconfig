@@ -61,4 +61,4 @@ sudo pip3 install termtosvg
 sudo pip3 install pyte python-xlib svgwrite
 
 #for env config
-echo "export PATH=\$PATH:/home/zqdong/tools/android-ndk-r15c:/home/zqdong/.yarn/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc

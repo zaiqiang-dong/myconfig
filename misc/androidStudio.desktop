@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=AndroidStudio
+GenericName=AndroidStudio
+Comment=Android develop tools
+Exec=/home/dongzaiq/tools/android-studio/bin/studio.sh
+Icon=/home/dongzaiq/tools/android-studio/bin/studio.png
+Terminal=false
+Categories=Development;
+StartupNotify=true
