@@ -4,7 +4,7 @@
 sudo apt-get install openjdk-8-jdk
 
 #for android
-sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip
+sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip build-essential libncurses5-dev texinfo
 sudo apt-get install android-platform-tools-base
 sudo apt-get install android-tools-adb
 sudo apt-get install android-tools-fastboot
@@ -59,6 +59,19 @@ apt-get install python3-sphinx
 #for termtosvg
 sudo pip3 install termtosvg
 sudo pip3 install pyte python-xlib svgwrite
+
+#for vuepress bolg system
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install --no-install-recommends yarn
+
+yarn global add vuepress
+yarn global add vuepress-plugin-mathjax
+yarn global add vuepress-plugin-container
+yarn global add @vuepress/plugin-back-to-top -D
+yarn global add @vuepress/plugin-google-analytics -D
+yarn global add @vssue/api-github-v3
+yarn global add @vssue/vuepress-plugin-vssue
 
 #for env config
 echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc
