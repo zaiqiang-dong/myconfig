@@ -73,5 +73,12 @@ yarn global add @vuepress/plugin-google-analytics -D
 yarn global add @vssue/api-github-v3
 yarn global add @vssue/vuepress-plugin-vssue
 
+#for download tool
+sudo apt-get install axel
+
+#for input method
+sudo apt install fcitx fcitx-table-wbpy
+
 #for env config
 echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc
+
