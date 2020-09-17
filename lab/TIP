@@ -1,0 +1,11 @@
+Tip:
+
+busybox build:
+    1.
+    Busybox Setting -->
+	Build Options -->
+	    [*]Build Busybox as a static binary (no shared libs)
+
+
+kernel build:
+    1.copy arch/[platform]/configs/defaultconfig

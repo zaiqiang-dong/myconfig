@@ -10,6 +10,10 @@ if [ -d "./rootfs" ]; then
     sudo rm ./rootfs -rf
 fi
 
+if [ -d "./tmp" ]; then
+    sudo rm ./tmp -rf
+fi
+
 if [ -f "./initrd.gz" ]; then
     rm ./initrd.gz -rf
 fi
@@ -90,4 +94,12 @@ ln -sv bin/busybox init
 sudo find . |sudo  cpio -H newc -o > ../tt.cpio
 sudo find . |sudo  cpio -H newc -o | sudo gzip -9 -n > ../initrd.gz
 cd ..
+dd if=/dev/zero of=sda-rootfs.img bs=1M count=100
+mkfs.ext4 sda-rootfs.img
+mkdir tmp
+sudo mount -t ext4 ./sda-rootfs.img ./tmp
+cd tmp/
+sudo cp ../rootfs/* . -rf
+cd ..
+sudo umount tmp
 echo "Make direction done"
