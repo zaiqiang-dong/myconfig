@@ -41,9 +41,7 @@ sudo apt install -y neovim
 cp ./nvim ~/.config/ -r
 
 #add clang tools
-sudo apt-get install clang-tools-8
-sudo ln -s /usr/bin/clangd-8 /usr/bin/clangd
-
+sudo apt install clangd
 
 #for ssh config
 cp ./sshconfig/config ~/.ssh/

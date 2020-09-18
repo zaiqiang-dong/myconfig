@@ -1,5 +1,14 @@
 Tip:
 
+aarch64-gdb build:
+    Download gdb source
+    tar -xvf gdb-9.2.tar.xz
+    mkdir build-gdb
+    cd build-gdb
+    ../gdb-9.2/configure --host=x86_64-linux-gnu --target=aarch64-linux-gnu --prefix=/home/dongzaiq/Downloads/build-gdb/
+    make
+
+
 busybox build:
     1.
     Busybox Setting -->
