@@ -22,3 +22,7 @@ kernel build:
 gdb:
     x86_64 command line must add nokaslr, or code will miss order and breakpoint can not work.
     --append "rdinit=/init console=ttyS0 nokaslr"
+
+cgdb:
+    need set debugger before -x file
+    cgdb  -d /usr/bin/aarch64-linux-gnu-gdb  -x ~/code/myconfig/lab/gdbinit
