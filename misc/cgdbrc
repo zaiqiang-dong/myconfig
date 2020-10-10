@@ -1,0 +1,7 @@
+set arrowstyle=long
+set ts=4
+set wso=vertical
+map <C-o> :until<cr>
+map <C-n> :n<cr>
+map <C-i> :s<cr>
+
