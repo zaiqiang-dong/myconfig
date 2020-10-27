@@ -77,6 +77,9 @@ sudo apt-get install axel
 #for input method
 sudo apt install fcitx fcitx-table-wbpy
 
+#for ripgrep
+sudo apt  install ripgrep
+
 #for env config
 echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc
 

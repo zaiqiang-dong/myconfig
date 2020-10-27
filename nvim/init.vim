@@ -18,6 +18,7 @@ syntax enable
 colorscheme mycolor
 
 set cursorline
+set colorcolumn=81
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -65,6 +66,7 @@ nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 "map for CocList command
 nmap <Space>g :CocList grep<CR>
 nmap <Space>f :CocList files<CR>
+nmap <Space>w :CocList words<CR>
 
 
 nmap <F2> :call CreateCTag()<CR>
@@ -206,6 +208,7 @@ let g:better_whitespace_enabled=1
 "tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_left=1
+let g:tagbar_width=30
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
