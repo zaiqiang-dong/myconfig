@@ -2,4 +2,6 @@
 2.cgroup 原理
 3.对齐到catch line,缓存问题
 4.代码重入问题
+5.用户空间内存分配brk
+6.signal机制
 
