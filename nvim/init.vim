@@ -18,8 +18,8 @@ syntax enable
 colorscheme mycolor
 
 set cursorline
-set colorcolumn=81
 
+autocmd FileType c,cpp,java,python,javascript setlocal colorcolumn=81
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto cmd
@@ -30,8 +30,8 @@ if has("autocmd")
        \| exe "normal g'\"" | endif
 endif
 
-"autocmd VimEnter * PlugUpdate 
-"autocmd VimEnter * CocUpdate 
+"autocmd VimEnter * PlugUpdate
+"autocmd VimEnter * CocUpdate
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " leader and map
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -365,6 +365,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'voldikss/vim-translator'
 Plug 'rafalbromirski/vim-aurora'
 Plug 'srcery-colors/srcery-vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 call plug#end()
 
