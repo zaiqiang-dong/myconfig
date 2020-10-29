@@ -89,6 +89,10 @@ cp ./terminator-config/terinator-config ~/.config/terminator/config
 #for ripgrep
 sudo apt  install ripgrep
 
+#for fun
+sudo apt install fortunes-min fortune-mod fortunes-zh
+sudo npm install -g cowsay
+
 #for env config
 echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc
 

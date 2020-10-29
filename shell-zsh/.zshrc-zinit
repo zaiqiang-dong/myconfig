@@ -17,7 +17,6 @@ zinit light sindresorhus/pure
 zinit ice blockf
 zinit light zsh-users/zsh-completions
 
-#use history
 zinit light zdharma/history-search-multi-word
 zinit ice from"gh-r" as"program"
 zinit load junegunn/fzf-bin
@@ -29,6 +28,17 @@ zinit cdclear -q
 
 zinit ice svn
 zinit snippet OMZ::plugins/z
+
+zinit snippet OMZP::command-not-found
+
+zinit snippet OMZP::colored-man-pages
+
+zinit snippet OMZP::cp
+
+zinit snippet OMZP::rand-quote
+
+zinit ice svn
+zinit snippet OMZ::plugins/sudo
 
 # zinit self-update
 # zinit update --all
@@ -43,6 +53,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+bindkey '^o' autosuggest-accept
+
 #history
 HISTCONTROL=ignoreboth
 HISTFILE="$HOME/.zsh_history"
@@ -52,3 +64,4 @@ HISTFILESIZE=20000
 #env path
 export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/
 
+fortune | cowsay -r
