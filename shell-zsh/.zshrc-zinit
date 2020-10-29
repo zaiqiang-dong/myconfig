@@ -1,14 +1,18 @@
 #use zinit
 source ~/.zinit/bin/zinit.zsh
+
 #use autosuggestions
 zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
+
 #use highlighting
 zinit ice lucid wait='0' atinit='zpcompinit'
 zinit light zdharma/fast-syntax-highlighting
+
 #use theme pure
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
+
 #use completions
 zinit ice blockf
 zinit light zsh-users/zsh-completions
@@ -33,3 +37,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+#env path
+export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/
+
