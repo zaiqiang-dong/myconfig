@@ -1,10 +1,13 @@
 [global_config]
+  window_state = maximise
+  title_hide_sizetext = True
   title_transmit_fg_color = "#a700f5"
   title_transmit_bg_color = "#000000"
   title_receive_fg_color = "#ef2929"
   title_receive_bg_color = "#000000"
   title_inactive_fg_color = "#4e9a06"
   title_inactive_bg_color = "#000000"
+  inactive_color_offset = 1.0
   suppress_multiple_term_dialog = True
   title_use_system_font = False
   title_font = Sans Bold 10
@@ -26,6 +29,8 @@
     cursor_color = "#aaaaaa"
     font = Ubuntu Mono Bold 14
     foreground_color = "#d8ff00"
+    scrollback_lines = 0
+    scrollback_infinite = True
     palette = "#f68905:#ff0033:#00ffc2:#ffc700:#0571ff:#fb07dc:#8ae234:#a700f5:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
     use_system_font = False
 [layouts]
@@ -36,4 +41,5 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
 [plugins]
