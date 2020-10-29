@@ -77,6 +77,9 @@ sudo apt-get install axel
 #for input method
 sudo apt install fcitx fcitx-table-wbpy
 
+#for zsh
+sudo apt install zsh
+
 #for ripgrep
 sudo apt  install ripgrep
 
