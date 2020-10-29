@@ -1,0 +1,39 @@
+[global_config]
+  title_transmit_fg_color = "#a700f5"
+  title_transmit_bg_color = "#000000"
+  title_receive_fg_color = "#ef2929"
+  title_receive_bg_color = "#000000"
+  title_inactive_fg_color = "#4e9a06"
+  title_inactive_bg_color = "#000000"
+  suppress_multiple_term_dialog = True
+  title_use_system_font = False
+  title_font = Sans Bold 10
+[keybindings]
+  go_next = <Primary><Shift>n
+  go_prev = <Primary><Shift>p
+  go_up = None
+  go_down = None
+  go_left = None
+  go_right = None
+  resize_up = <Primary><Shift>j
+  resize_down = <Primary><Shift>k
+  resize_left = <Primary><Shift>h
+  resize_right = <Primary><Shift>l
+  next_tab = <Primary>m
+  prev_tab = <Primary>comma
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+    font = Ubuntu Mono Bold 14
+    foreground_color = "#d8ff00"
+    palette = "#f68905:#ff0033:#00ffc2:#ffc700:#0571ff:#fb07dc:#8ae234:#a700f5:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]

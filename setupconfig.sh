@@ -79,6 +79,12 @@ sudo apt install fcitx fcitx-table-wbpy
 
 #for zsh
 sudo apt install zsh
+sudo chsh /bin/zsh
+sudo apt-get install subversion
+
+#for terminator
+sudo apt install terminator
+cp ./terminator-config/terinator-config ~/.config/terminator/config
 
 #for ripgrep
 sudo apt  install ripgrep
