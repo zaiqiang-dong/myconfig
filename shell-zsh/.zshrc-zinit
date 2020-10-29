@@ -17,6 +17,11 @@ zinit light sindresorhus/pure
 zinit ice blockf
 zinit light zsh-users/zsh-completions
 
+#use history
+zinit light zdharma/history-search-multi-word
+zinit ice from"gh-r" as"program"
+zinit load junegunn/fzf-bin
+
 #use omz
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
@@ -37,6 +42,12 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+#history
+HISTCONTROL=ignoreboth
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 #env path
 export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/
