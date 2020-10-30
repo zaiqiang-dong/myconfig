@@ -95,9 +95,91 @@ syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
 syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
 hi cFunctions guifg=#ffbf00 guibg=NONE guisp=NONE gui=bold ctermfg=200 ctermbg=NONE cterm=bold
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" format setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+func! CompileGcc()
+    let compilecmd="!gcc "
+    let compileflag="-o %< "
+    if search("mpi\.h") != 0
+        let compilecmd = "!mpicc "
+    endif
+    if search("glut\.h") != 0
+        let compileflag .= " -lglut -lGLU -lGL "
+    endif
+    if search("cv\.h") != 0
+        let compileflag .= " -lcv -lhighgui -lcvaux "
+    endif
+    if search("omp\.h") != 0
+        let compileflag .= " -fopenmp "
+    endif
+    if search("math\.h") != 0
+        let compileflag .= " -lm "
+    endif
+    exec compilecmd." % ".compileflag
+endfunc
+func! CompileGpp()
+    let compilecmd="!g++ "
+    let compileflag="-o %< "
+    if search("mpi\.h") != 0
+        let compilecmd = "!mpic++ "
+    endif
+    if search("glut\.h") != 0
+        let compileflag .= " -lglut -lGLU -lGL "
+    endif
+    if search("cv\.h") != 0
+        let compileflag .= " -lcv -lhighgui -lcvaux "
+    endif
+    if search("omp\.h") != 0
+        let compileflag .= " -fopenmp "
+    endif
+    if search("math\.h") != 0
+        let compileflag .= " -lm "
+    endif
+    exec compilecmd." % ".compileflag
+endfunc
+
+func! RunPython()
+        exec "!python3 %"
+endfunc
+func! CompileJava()
+    exec "!javac %"
+endfunc
+
+
+func! CompileCode()
+        if &filetype == "cpp"
+                exec "call CompileGpp()"
+        elseif &filetype == "c"
+                exec "call CompileGcc()"
+        elseif &filetype == "java"
+                exec "call CompileJava()"
+        endif
+endfunc
+
+func! RunResult()
+        if search("mpi\.h") != 0
+            exec "!mpirun -np 4 ./%<"
+        elseif &filetype == "cpp"
+            exec "! ./%<"
+        elseif &filetype == "c"
+            exec "! ./%<"
+        elseif &filetype == "python"
+            exec "call RunPython()"
+        elseif &filetype == "java"
+            exec "!java %<"
+        endif
+endfunc
+
+func! CompileAndRun()
+	exec "call CompileCode()"
+	exec "call RunResult()"
+endfunc
+
+map <F5> :call CompileAndRun()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function setting
+" format setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 func FormatC()
@@ -268,6 +350,20 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc-nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Echo translation in the cmdline
+" nmap <silent> <Leader>t <Plug>Translate
+" vmap <silent> <Leader>t <Plug>TranslateV
+" Display translation in a window
+" nmap <silent> <Leader>w <Plug>TranslateW
+" vmap <silent> <Leader>w <Plug>TranslateWV
+
+nmap <silent> <Leader>t <Plug>TranslateW
+vmap <silent> <Leader>t <Plug>TranslateWV
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc-nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
 	    \		     'coc-python', 'coc-snippets', 'coc-pairs',
 	    \		     'coc-git', 'coc-ultisnips', 'coc-word',
@@ -282,7 +378,8 @@ let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
 "     call CocAction('doHover')
 "   endif
 " endfunction
-nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
+"
+nnoremap <silent> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -294,18 +391,6 @@ nmap rr <Plug>(coc-refactor)
 
 let g:coc_disable_startup_warning = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" coc-nvim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Echo translation in the cmdline
-nmap <silent> <Leader>t <Plug>Translate
-vmap <silent> <Leader>t <Plug>TranslateV
-" Display translation in a window
-nmap <silent> <Leader>w <Plug>TranslateW
-vmap <silent> <Leader>w <Plug>TranslateWV
-" Replace the text with translation
-nmap <silent> <Leader>r <Plug>TranslateR
-vmap <silent> <Leader>r <Plug>TranslateRV
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -334,6 +419,13 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-man
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>v <Plug>(Vman)
+map <leader>k <Plug>(Man)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
@@ -366,6 +458,7 @@ Plug 'voldikss/vim-translator'
 Plug 'rafalbromirski/vim-aurora'
 Plug 'srcery-colors/srcery-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'vim-utils/vim-man'
 
 call plug#end()
 
