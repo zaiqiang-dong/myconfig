@@ -64,9 +64,11 @@ nmap ci :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
 nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "map for CocList command
-nmap <Space>g :CocList grep<CR>
+" nmap <Space>g :CocList grep<CR>
+" nmap <Space>w :CocList words<CR>
+nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+nnoremap <silent> <space>g  :exe 'CocList -I --normal --input='.expand('<cword>').' grep'<CR>
 nmap <Space>f :CocList files<CR>
-nmap <Space>w :CocList words<CR>
 
 
 nmap <F2> :call CreateCTag()<CR>
