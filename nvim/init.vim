@@ -9,6 +9,7 @@ set fencs=utf-8
 autocmd FileType c setlocal noexpandtab tabstop=4
 autocmd FileType cpp,java,python,javascript setlocal expandtab tabstop=4
 set autoindent
+set smartindent
 set shiftwidth=4
 
 set foldenable
@@ -20,6 +21,7 @@ colorscheme mycolor
 set cursorline
 
 autocmd FileType c,cpp,java,python,javascript setlocal colorcolumn=81
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto cmd
@@ -422,6 +424,13 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
+"{} <CR>
+"
+"{
+"    insert
+"}
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-man

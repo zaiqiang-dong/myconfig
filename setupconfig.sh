@@ -94,6 +94,9 @@ sudo apt  install ripgrep
 sudo apt install fortunes-min fortune-mod fortunes-zh
 sudo npm install -g cowsay
 
+#for un/rar
+sudo apt install unrar rar
+
 #for env config
 echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc
 
