@@ -437,7 +437,11 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>v <Plug>(Vman)
 map <leader>k <Plug>(Man)
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indentline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType json,markdown let g:indentLine_conceallevel=0
+autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

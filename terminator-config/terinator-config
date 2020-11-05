@@ -42,6 +42,7 @@
     scrollback_infinite = True
     palette = "#f68905:#ff0033:#00ffc2:#ffc700:#0571ff:#fb07dc:#8ae234:#a700f5:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
     use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[window0]]]
