@@ -2,7 +2,8 @@
     "diagnostic.enable": false,
     "translator.engines":["youdao"],
     "snippets.extends":{
-        "cpp":["java"],
-    	"c":["java"]
+	"cpp":["java"],
+	"c":["java"]
     }
+
 }
