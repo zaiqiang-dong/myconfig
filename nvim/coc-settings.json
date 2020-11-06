@@ -4,6 +4,5 @@
     "snippets.extends":{
         "cpp":["java"],
     	"c":["java"]
-    },
-    "clangd.disableSnippetCompletion":true
+    }
 }
