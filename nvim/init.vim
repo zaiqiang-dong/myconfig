@@ -342,13 +342,6 @@ autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceal
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-translator
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nmap <silent> <Leader>t <Plug>TranslateW
- let g:translator_default_engines=['youdao']
-
-
 
 
 

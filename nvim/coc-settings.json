@@ -1,12 +1,5 @@
 {
     "diagnostic.enable": false,
-    "coc-translator":{
-	"translator.engines": {
-	    "type": "array",
-	    "default": [
-		"youdao"
-	    ]
-	}
+    "translator.engines":["youdao"]
 
-    }
 }
