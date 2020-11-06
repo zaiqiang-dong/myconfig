@@ -8,7 +8,6 @@ set fencs=utf-8
 
 autocmd FileType c setlocal noexpandtab tabstop=4
 autocmd FileType cpp,java,python,javascript setlocal expandtab tabstop=4
-set autoindent
 set smartindent
 set shiftwidth=4
 
@@ -298,7 +297,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<TAB>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
@@ -308,6 +307,8 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 "{} <CR>
 "
@@ -348,7 +349,7 @@ autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/pluged')
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

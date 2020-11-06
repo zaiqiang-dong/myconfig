@@ -1,5 +1,9 @@
 {
     "diagnostic.enable": false,
-    "translator.engines":["youdao"]
-
+    "translator.engines":["youdao"],
+    "snippets.extends":{
+        "cpp":["java"],
+    	"c":["java"]
+    },
+    "clangd.disableSnippetCompletion":true
 }
