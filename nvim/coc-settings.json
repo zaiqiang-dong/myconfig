@@ -4,6 +4,6 @@
     "snippets.extends":{
 	"cpp":["java"],
 	"c":["java"]
-    }
+    },
 
 }
