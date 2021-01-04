@@ -1,4 +1,5 @@
-process=`ps -e | grep "qemu"`
-array=(${process// / })
-echo "kill "${array[0]}
-kill ${array[0]}
+p=(`ps -e | grep "qemu" | awk '$1=$1'`)
+echo $p
+array=($p)
+
+kill $array[1]

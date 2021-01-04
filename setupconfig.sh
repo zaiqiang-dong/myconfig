@@ -80,7 +80,7 @@ sudo apt install fcitx fcitx-table-wbpy
 
 #for zsh
 sudo apt install zsh
-sudo chsh /bin/zsh
+chsh -s /bin/zsh
 sudo apt-get install subversion
 
 #for terminator
@@ -96,6 +96,9 @@ sudo npm install -g cowsay
 
 #for un/rar
 sudo apt install unrar rar
+
+# vinager
+sudo apt install vinagre
 
 #for env config
 echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc

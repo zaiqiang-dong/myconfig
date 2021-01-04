@@ -148,6 +148,7 @@ func! RunResult()
 endfunc
 
 func! CompileAndRun()
+	exec "w"
 	exec "call CompileCode()"
 	exec "call RunResult()"
 endfunc
@@ -349,8 +350,17 @@ autocmd FileType json,markdown let g:indentLine_conceallevel=0
 autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" preview-markdown.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"let g:preview_markdown_vertical=1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -373,6 +383,10 @@ Plug 'rafalbromirski/vim-aurora'
 Plug 'srcery-colors/srcery-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'vim-utils/vim-man'
+"Plug 'skanehira/preview-markdown.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,8 +1,12 @@
-2.cgroup 原理
-3.对齐到catch line,缓存问题
-4.代码重入问题
-5.用户空间内存分配brk
-6.signal机制
-7.内存迁移和回收时机
-8.fork vfork clone pthread_create
-
+cgroup 原理
+对齐到catch line,缓存问题
+代码重入问题
+用户空间内存分配brk
+signal机制
+fork vfork clone pthread_create
+进程fork的过程
+进程的切换过程
+内存回收,反向映射，匿名页，规整
+VFS详细
+内存回收时机问题同步异步
+伙伴系统分配中zone的扫描和选择
