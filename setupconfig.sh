@@ -80,7 +80,7 @@ sudo apt install fcitx fcitx-table-wbpy
 
 #for zsh
 sudo apt install zsh
-chsh -s /bin/zsh
+#chsh -s /bin/zsh
 sudo apt-get install subversion
 
 #for terminator
