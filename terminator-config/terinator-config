@@ -39,7 +39,7 @@
   [[default]]
     cursor_color = "#aaaaaa"
     font = Ubuntu Mono Bold 14
-    foreground_color = "#73d216"
+    foreground_color = "#c3f60b"
     scrollback_lines = 0
     scrollback_infinite = True
     palette = "#f68905:#ff0033:#00ffc2:#ffc700:#0571ff:#f8b8e4:#8ae234:#d7bbf4:#bf793f:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"

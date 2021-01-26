@@ -14,7 +14,7 @@ let g:colors_name = "mycolor_modified"
 "hi CTagsMember -- no settings --
 "hi CTagsGlobalConstant -- no settings --
 "hi Ignore -- no settings --
-hi Normal guifg=#7ef01a guibg=#000000 guisp=#000000 gui=bold ctermfg=112 ctermbg=NONE cterm=bold
+hi Normal guifg=#7ef01a guibg=#000000 guisp=#000000 gui=bold ctermfg=106 ctermbg=NONE cterm=bold
 "hi CTagsImport -- no settings --
 "hi CTagsGlobalVariable -- no settings --
 "hi EnumerationValue -- no settings --
