@@ -234,6 +234,8 @@ nmap cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nredtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeAutoCenter=1
 let g:NERDTreeWinSize=60
 let g:NERDTreeWinPos='right'
 let g:NERDTreeQuitOnOpen=1
