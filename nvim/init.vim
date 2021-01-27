@@ -14,7 +14,7 @@ set shiftwidth=4
 set foldenable
 set foldmethod=marker
 filetype plugin indent on
-syntax enable
+syntax on
 colorscheme mycolor
 
 set cursorline
@@ -58,11 +58,6 @@ nmap <Space>c : set nohlsearch<CR>
 
 "copy selected code
 vmap <C-c> "+y
-
-"highlight Functions
-syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
-syn match cFunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
-hi cFunctions guifg=#ffbf00 guibg=NONE guisp=NONE gui=bold ctermfg=200 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function define
