@@ -10,8 +10,8 @@ set t_Co=256
 let g:colors_name = "mycolor_modified"
 
 
+hi Normal 		ctermfg=148 ctermbg=NONE cterm=bold
 "for c/c++ language
-hi Normal 		ctermfg=112 ctermbg=NONE cterm=bold
 hi cStatement 		ctermfg=198 ctermbg=NONE cterm=bold
 hi cppStatement 	ctermfg=198 ctermbg=NONE cterm=bold
 hi cLabel 		ctermfg=198 ctermbg=NONE cterm=bold
@@ -29,11 +29,11 @@ hi cOctalZero 		ctermfg=208 ctermbg=NONE cterm=bold
 
 hi cComment 		ctermfg=081 ctermbg=NONE cterm=bold
 
-hi cType 		ctermfg=198 ctermbg=NONE cterm=bold
-hi cppType 		ctermfg=198 ctermbg=NONE cterm=bold
+hi cType 		ctermfg=202 ctermbg=NONE cterm=bold
+hi cppType 		ctermfg=202 ctermbg=NONE cterm=bold
 hi cppBoolean 		ctermfg=226 ctermbg=NONE cterm=bold
-hi cStructure 		ctermfg=198 ctermbg=NONE cterm=bold
-hi cppStructure 	ctermfg=198 ctermbg=NONE cterm=bold
+hi cStructure 		ctermfg=202 ctermbg=NONE cterm=bold
+hi cppStructure 	ctermfg=202 ctermbg=NONE cterm=bold
 
 
 hi cStorageClass 	ctermfg=049 ctermbg=NONE cterm=bold
@@ -46,7 +46,7 @@ hi cppOperator 		ctermfg=218 ctermbg=NONE cterm=bold
 hi cOperator 		ctermfg=218 ctermbg=NONE cterm=bold
 
 hi dOperator 		ctermfg=201 ctermbg=NONE cterm=bold
-hi dClasss 		ctermfg=198 ctermbg=NONE cterm=bold
+hi dClasss 		ctermfg=201 ctermbg=NONE cterm=bold
 
 hi cInclude 		ctermfg=226 ctermbg=NONE cterm=bold
 hi cDefine 		ctermfg=226 ctermbg=NONE cterm=bold
@@ -58,7 +58,6 @@ hi cFormat 		ctermfg=226 ctermbg=NONE cterm=bold
 hi cString 		ctermfg=201 ctermbg=NONE cterm=bold
 
 hi cUserLabel 		ctermfg=201 ctermbg=NONE cterm=bold
-hi cLabel 		ctermfg=201 ctermbg=NONE cterm=bold
 hi cUserCont 		ctermfg=123 ctermbg=NONE cterm=bold
 
 
