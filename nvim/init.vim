@@ -37,10 +37,7 @@ nmap dp d^
 nmap da d$
 
 "open right file list
-nmap <C-n> :NERDTreeToggle<CR>
-"open right file list and find curent file
-nmap <C-f> :NERDTreeFind<CR>
-
+nmap <leader>n :NERDTreeToggle<CR>
 
 nmap <F2> :call CreateCTag()<CR>
 nmap <F3> :call CreatePythonTag()<CR>
@@ -292,13 +289,10 @@ imap <C-l> <Plug>(coc-snippets-expand)
 " vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+let g:coc_list_next = '<C-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+let g:coc_list_prev = '<C-k>'
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :

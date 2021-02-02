@@ -84,8 +84,9 @@ sudo apt install zsh
 sudo apt-get install subversion
 
 #for terminator
-sudo apt install terminator
-cp ./terminator-config/terinator-config ~/.config/terminator/config
+# sudo apt install terminator
+# cp ./terminator-config/terinator-config ~/.config/terminator/config
+
 
 #for ripgrep
 sudo apt  install ripgrep
@@ -101,5 +102,5 @@ sudo apt install unrar rar
 sudo apt install vinagre
 
 #for env config
-echo "export PATH=\$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
 
