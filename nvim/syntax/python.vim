@@ -1,0 +1,3 @@
+syn match dOperator	"\v\."
+
+
