@@ -68,8 +68,8 @@ hi cUserCont 		ctermfg=123 ctermbg=NONE cterm=bold
 "global config
 hi Pmenu         	ctermfg=039 ctermbg=234 cterm=bold
 hi PmenuSel 		ctermfg=000 ctermbg=214 cterm=bold
-hi PmenuSbar 		ctermfg=112 ctermbg=NONE cterm=bold
-hi PmenuThumb 		ctermfg=112 ctermbg=NONE cterm=bold
+hi PmenuSbar 		ctermfg=197 ctermbg=NONE cterm=bold
+hi PmenuThumb 		ctermfg=202 ctermbg=NONE cterm=bold
 
 hi TabLineSel 		ctermfg=000 ctermbg=214 cterm=bold
 hi Search 		ctermfg=123 ctermbg=NONE cterm=bold
@@ -80,4 +80,7 @@ hi Title 		ctermfg=197 ctermbg=NONE cterm=bold
 hi StatusLine 		ctermfg=197 ctermbg=NONE cterm=bold
 hi CursorLine 		ctermfg=NONE ctermbg=239 cterm=bold
 hi MatchParen 		ctermfg=NONE ctermbg=NONE cterm=bold
+hi CursorLineNr 	ctermfg=197 ctermbg=NONE cterm=bold
+hi LineNr 		ctermfg=239 ctermbg=NONE cterm=bold
+hi VertSplit 		ctermfg=239 ctermbg=239 cterm=bold
 
