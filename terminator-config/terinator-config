@@ -38,7 +38,7 @@
 [profiles]
   [[default]]
     cursor_color = "#aaaaaa"
-    font = Ubuntu Mono Bold 14
+    font = Ubuntu Mono Bold 16
     foreground_color = "#c3f60b"
     scrollback_lines = 0
     scrollback_infinite = True

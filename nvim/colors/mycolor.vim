@@ -17,6 +17,8 @@ let g:colors_name = "mycolor_modified"
 hi Comment 		ctermfg=081 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" \2 \n
+hi SpecialChar 		ctermfg=051 ctermbg=NONE cterm=bold
 hi Pmenu         	ctermfg=039 ctermbg=234 cterm=bold
 hi PmenuSel 		ctermfg=000 ctermbg=214 cterm=bold
 hi PmenuSbar 		ctermfg=197 ctermbg=NONE cterm=bold
@@ -81,8 +83,8 @@ hi cDefine 		ctermfg=226 ctermbg=NONE cterm=bold
 hi cPreCondit 		ctermfg=226 ctermbg=NONE cterm=bold
 hi cConstant 		ctermfg=226 ctermbg=NONE cterm=bold
 hi cppConstant 		ctermfg=226 ctermbg=NONE cterm=bold
-
-hi cFormat 		ctermfg=226 ctermbg=NONE cterm=bold
+" %s %d
+hi cFormat 		ctermfg=046 ctermbg=NONE cterm=bold
 hi cString 		ctermfg=201 ctermbg=NONE cterm=bold
 
 hi cUserLabel 		ctermfg=201 ctermbg=NONE cterm=bold

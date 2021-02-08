@@ -19,7 +19,7 @@ colorscheme mycolor
 
 set cursorline
 
-autocmd FileType c,cpp,java,python,javascript setlocal colorcolumn=81
+autocmd FileType c,cpp,java,python setlocal colorcolumn=81
 
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
