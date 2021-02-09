@@ -136,7 +136,14 @@ func! RunResult()
         elseif &filetype == "java"
             exec "!java %<"
         endif
-        exec "!rm %<"
+
+        if &filetype == "cpp"
+	    exec "!rm %<"
+        elseif &filetype == "c"
+	    exec "!rm %<"
+        elseif &filetype == "java"
+	    exec "!rm %<"
+        endif
 endfunc
 
 func! CompileAndRun()

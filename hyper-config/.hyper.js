@@ -157,7 +157,6 @@ module.exports = {
   plugins: [
     "hypercwd",
     "hyper-search",
-    "hyperpower",
     "hyper-yes",
     "hyper-fading-scrollbar",
   ],
