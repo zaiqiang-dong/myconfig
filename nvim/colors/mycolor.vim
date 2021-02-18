@@ -69,8 +69,8 @@ hi cppStructure 	ctermfg=202 ctermbg=NONE cterm=bold
 hi cStorageClass 	ctermfg=049 ctermbg=NONE cterm=bold
 hi cppStorageClass 	ctermfg=049 ctermbg=NONE cterm=bold
 hi cppModifier 		ctermfg=049 ctermbg=NONE cterm=bold
-
-hi cppAccess 		ctermfg=226 ctermbg=NONE cterm=bold
+" public protected private
+hi cppAccess 		ctermfg=197 ctermbg=NONE cterm=bold
 
 hi cppOperator 		ctermfg=218 ctermbg=NONE cterm=bold
 hi cOperator 		ctermfg=218 ctermbg=NONE cterm=bold
@@ -79,8 +79,10 @@ hi dOperator 		ctermfg=201 ctermbg=NONE cterm=bold
 hi dClasss 		ctermfg=201 ctermbg=NONE cterm=bold
 
 hi cInclude 		ctermfg=226 ctermbg=NONE cterm=bold
-hi cDefine 		ctermfg=226 ctermbg=NONE cterm=bold
-hi cPreCondit 		ctermfg=226 ctermbg=NONE cterm=bold
+" define
+hi cDefine 		ctermfg=082 ctermbg=NONE cterm=bold
+" #ifdef
+hi cPreCondit 		ctermfg=082 ctermbg=NONE cterm=bold
 hi cConstant 		ctermfg=226 ctermbg=NONE cterm=bold
 hi cppConstant 		ctermfg=226 ctermbg=NONE cterm=bold
 " %s %d
