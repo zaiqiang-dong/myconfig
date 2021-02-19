@@ -43,11 +43,13 @@ hi Normal 		ctermfg=148 ctermbg=NONE cterm=bold
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "for c/c++ language
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-hi cStatement 		ctermfg=198 ctermbg=NONE cterm=bold
-hi cppStatement 	ctermfg=198 ctermbg=NONE cterm=bold
-hi cLabel 		ctermfg=198 ctermbg=NONE cterm=bold
-hi cConditional 	ctermfg=198 ctermbg=NONE cterm=bold
-hi cRepeat 		ctermfg=198 ctermbg=NONE cterm=bold
+
+" if else return
+hi cStatement 		ctermfg=196 ctermbg=NONE cterm=bold
+hi cppStatement 	ctermfg=196 ctermbg=NONE cterm=bold
+hi cLabel 		ctermfg=196 ctermbg=NONE cterm=bold
+hi cConditional 	ctermfg=196 ctermbg=NONE cterm=bold
+hi cRepeat 		ctermfg=196 ctermbg=NONE cterm=bold
 
 
 

@@ -251,7 +251,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:rainbow_active = 1
 let g:rainbow_conf = {
 \	'guifgs': ['magenta', 'cyan', 'red', 'brown'],
-\	'ctermfgs': ['magenta', 'cyan', 'red', 'brown'],
+\	'ctermfgs': ['198', '051', '208', '177'],
 \	'operators': '_,_',
 \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \}
