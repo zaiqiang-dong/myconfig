@@ -4,6 +4,7 @@ cp ~/.config/nvim/colors/mycolor.vim ./nvim/colors/mycolor.vim
 cp -r ~/.config/nvim/syntax ./nvim/
 cp ~/.config/terminator/config ./terminator-config/terinator-config
 cp ~/.hyper.js ./hyper-config/.hyper.js
+cp ~/.zshrc ./shell-zsh/.zshrc
 
 git add .
 git commit -m "update"

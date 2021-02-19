@@ -52,6 +52,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias g++='g++ --std=c++11'
 
 bindkey '^o' autosuggest-accept
 
@@ -60,7 +61,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILESIZE=20000
-setopt SHARE_HISTORY
+#setopt SHARE_HISTORY
 
 #env path
 export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/
