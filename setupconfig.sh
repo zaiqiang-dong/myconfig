@@ -11,7 +11,7 @@ sudo apt-get install android-tools-fastboot
 sudo cp ./rules.d/* /etc/udev/rules.d/
 #ctags cscope
 sudo snap install universal-ctags
-sudo apt-get install ctags cscope
+sudo apt-get install cscope
 
 #nodejs
 sudo apt-get install nodejs
