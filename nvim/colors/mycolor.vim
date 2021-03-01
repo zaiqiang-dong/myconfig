@@ -18,6 +18,7 @@ hi Comment 		ctermfg=031 ctermbg=NONE cterm=bold
 hi Normal 		ctermfg=248 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi Directory 		ctermfg=031 ctermbg=NONE cterm=bold
 "hi let
 hi Statement		ctermfg=161 ctermbg=NONE cterm=bold
 " \2 \n
