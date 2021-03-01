@@ -31,7 +31,7 @@ hi Type 		ctermfg=035 ctermbg=NONE cterm=bold
 
 hi TabLineSel 		ctermfg=232 ctermbg=214 cterm=bold
 " / find
-hi Search 		ctermfg=123 ctermbg=NONE cterm=bold
+hi Search 		ctermfg=123 ctermbg=240 cterm=bold
 
 " TagbarHighlight
 hi TagbarHighlight 	ctermfg=161 ctermbg=NONE cterm=bold
