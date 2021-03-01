@@ -14,7 +14,7 @@ let g:colors_name = "mycolor_modified"
 "global config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-hi Comment 		ctermfg=024 ctermbg=NONE cterm=bold
+hi Comment 		ctermfg=031 ctermbg=NONE cterm=bold
 hi Normal 		ctermfg=248 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,20 +143,20 @@ hi cUserCont 		ctermfg=123 ctermbg=NONE cterm=bold
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-hi pythonStatement 	ctermfg=198 ctermbg=NONE cterm=bold
-hi pythonRepeat 	ctermfg=198 ctermbg=NONE cterm=bold
-hi pythonConditional 	ctermfg=198 ctermbg=NONE cterm=bold
-hi pythonException 	ctermfg=198 ctermbg=NONE cterm=bold
-hi pythonAsync 		ctermfg=198 ctermbg=NONE cterm=bold
+hi pythonStatement 	ctermfg=161 ctermbg=NONE cterm=bold
+hi pythonRepeat 	ctermfg=161 ctermbg=NONE cterm=bold
+hi pythonConditional 	ctermfg=161 ctermbg=NONE cterm=bold
+hi pythonException 	ctermfg=161 ctermbg=NONE cterm=bold
+hi pythonAsync 		ctermfg=161 ctermbg=NONE cterm=bold
 
-hi pythonOperator 	ctermfg=048 ctermbg=NONE cterm=bold
-hi pythonInclude 	ctermfg=198 ctermbg=NONE cterm=bold
+hi pythonOperator 	ctermfg=036 ctermbg=NONE cterm=bold
+hi pythonInclude 	ctermfg=161 ctermbg=NONE cterm=bold
 
 
-hi pythonNumber 	ctermfg=208 ctermbg=NONE cterm=bold
-hi pythonBuiltin 	ctermfg=148 ctermbg=NONE cterm=bold
-hi pythonFunction 	ctermfg=148 ctermbg=NONE cterm=bold
-hi pythonComment 	ctermfg=044 ctermbg=NONE cterm=bold
+hi pythonNumber 	ctermfg=173 ctermbg=NONE cterm=bold
+hi pythonBuiltin 	ctermfg=070 ctermbg=NONE cterm=bold
+hi pythonFunction 	ctermfg=070 ctermbg=NONE cterm=bold
+hi pythonComment 	ctermfg=031 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
