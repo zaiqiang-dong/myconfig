@@ -72,6 +72,7 @@ hi ErrorMsg 		ctermfg=250 ctermbg=NONE cterm=bold
 hi Error 		ctermfg=250 ctermbg=NONE cterm=bold
 " true false
 hi Constant 		ctermfg=179 ctermbg=NONE cterm=bold
+hi MatchParen		ctermfg=051 ctermbg=NONE cterm=bold
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -251,7 +251,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:rainbow_active = 1
 let g:rainbow_conf = {
 \	'guifgs': ['magenta', 'cyan', 'red', 'brown'],
-\	'ctermfgs': ['198', '051', '208', '177'],
+\	'ctermfgs': ['198', '070', '208', '177'],
 \	'operators': '_,_',
 \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \}
@@ -366,6 +366,10 @@ let g:vim_markdown_math = 1
 let g:airline_theme='bubblegum'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" smoothie
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/pluged')
@@ -388,6 +392,7 @@ Plug 'vim-utils/vim-man'
 "Plug 'skanehira/preview-markdown.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
