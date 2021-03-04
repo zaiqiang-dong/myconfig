@@ -1,7 +1,7 @@
 syn match dClasss	"::"
 syn match dClasss	":"
 
-syn match dOperator	"\v\*"
+syn match dOperator	"\v \* "
 syn match dOperator	"\v\=\="
 syn match dOperator	"\v\="
 syn match dOperator	"\v/"

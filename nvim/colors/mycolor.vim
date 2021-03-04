@@ -82,7 +82,8 @@ hi dOperator 		ctermfg=211 ctermbg=NONE cterm=bold
 hi dClasss 		ctermfg=211 ctermbg=NONE cterm=bold
 hi cFunctions 		ctermfg=035 ctermbg=NONE cterm=bold
 hi classPre		ctermfg=037 ctermbg=NONE cterm=bold
-hi classObject		ctermfg=142 ctermbg=NONE cterm=bold
+hi structVar		ctermfg=106 ctermbg=NONE cterm=bold
+hi classObject		ctermfg=106 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "for c/c++ language
@@ -135,7 +136,6 @@ hi cString 		ctermfg=175 ctermbg=NONE cterm=bold
 "goto label
 hi cUserLabel 		ctermfg=133 ctermbg=NONE cterm=bold
 hi cUserCont 		ctermfg=123 ctermbg=NONE cterm=bold
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

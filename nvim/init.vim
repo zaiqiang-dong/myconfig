@@ -26,6 +26,11 @@ if has("autocmd")
        \| exe "normal g'\"" | endif
 endif
 
+augroup helpfiles
+  au!
+  au BufRead,BufEnter */doc/* wincmd H
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " leader and map
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
