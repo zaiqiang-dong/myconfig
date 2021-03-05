@@ -20,6 +20,16 @@ for line in vim.current.buffer:
 for s in keywords:
     vim.command("syn keyword structVar " + s)
 
+keyMacros = set()
+
+for line in vim.current.buffer:
+    print("*"*20)
+    matchObj = re.match( r'([^\\|*].*[ |\(]([A-Z]+[A-Z_]*)(.*))', line)
+    if matchObj:
+        keyMacros.add(matchObj.group(2))
+
+for s in keyMacros:
+    vim.command("syn keyword macroDef " + s)
 EOF
 endfunction
 call s:setVarColor()

@@ -83,6 +83,7 @@ hi dClasss 		ctermfg=211 ctermbg=NONE cterm=bold
 hi cFunctions 		ctermfg=035 ctermbg=NONE cterm=bold
 hi classPre		ctermfg=037 ctermbg=NONE cterm=bold
 hi structVar		ctermfg=106 ctermbg=NONE cterm=bold
+hi macroDef		ctermfg=149 ctermbg=NONE cterm=bold
 hi classObject		ctermfg=106 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
