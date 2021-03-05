@@ -24,7 +24,7 @@ keyMacros = set()
 
 for line in vim.current.buffer:
     print("*"*20)
-    matchObj = re.match( r'([^\\|*].*[ |\(]([A-Z]+[A-Z_]*)(.*))', line)
+    matchObj = re.match( r'([^\\|*].*[ \(-[]([A-Z]+[A-Z_]*)(.*))', line)
     if matchObj:
         keyMacros.add(matchObj.group(2))
 

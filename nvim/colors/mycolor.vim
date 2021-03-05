@@ -54,7 +54,7 @@ hi MoreMsg 		ctermfg=006 ctermbg=NONE cterm=bold
 hi Title 		ctermfg=161 ctermbg=NONE cterm=bold
 
 hi StatusLine 		ctermfg=132 ctermbg=NONE cterm=bold
-hi CursorLine 		ctermfg=NONE ctermbg=239 cterm=bold
+hi CursorLine 		ctermfg=NONE ctermbg=236 cterm=bold
 hi CursorColumn 	ctermfg=NONE ctermbg=NONE cterm=bold
 hi SignColumn 		ctermfg=NONE ctermbg=234 cterm=bold
 hi MatchParen 		ctermfg=NONE ctermbg=NONE cterm=bold
