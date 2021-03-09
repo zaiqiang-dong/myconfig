@@ -2,6 +2,7 @@
 !define ACCENT_GREEN_COLOR #3eaf7c
 !define DEFAULT_COLOR #2c3e50
 
+skinparam Dpi 160
 skinparam DefaultFontColor DEFAULT_COLOR
 skinparam DefaultFontStyle bold
 skinparam Shadowing false
