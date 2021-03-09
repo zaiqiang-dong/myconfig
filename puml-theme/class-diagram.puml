@@ -5,12 +5,33 @@
 skinparam DefaultFontColor DEFAULT_COLOR
 skinparam DefaultFontStyle bold
 skinparam Shadowing false
-skinparam ArrowColor ACCENT_GREEN_COLOR
-skinparam ArrowFontSize 10
-skinparam ClassBackgroundColor #FFF
-skinparam ClassBorderColor DEFAULT_COLOR
-skinparam ClassFontColor DEFAULT_COLOR
-skinparam ClassBorderColor DEFAULT_COLOR
-skinparam ClassHeaderBackgroundColor #FFF
+skinparam CircledCharacterRadius ACCENT_GREEN_COLOR
+
+skinparam Arrow {
+    Color ACCENT_GREEN_COLOR
+    FontSize 10
+}
+
+skinparam Class {
+    BackgroundColor #FFF
+    BorderColor DEFAULT_COLOR
+    FontColor DEFAULT_COLOR
+    BorderColor DEFAULT_COLOR
+    HeaderBackgroundColor #FFF
+    AttributeFontSize 8
+
+}
+
+skinparam Icon {
+    PrivateColor ACCENT_GREEN_COLOR
+    ProtectedColor ACCENT_GREEN_COLOR
+    PublicColor ACCENT_GREEN_COLOR
+    PackageColor ACCENT_GREEN_COLOR
+    PackageBackgroundColor ACCENT_GREEN_COLOR
+    PrivateBackgroundColor ACCENT_GREEN_COLOR
+    ProtectedBackgroundColor ACCENT_GREEN_COLOR
+    PublicBackgroundColor ACCENT_GREEN_COLOR
+}
+
 
 @enduml
