@@ -1,0 +1,16 @@
+@startuml
+!define ACCENT_GREEN_COLOR #3eaf7c
+!define DEFAULT_COLOR #2c3e50
+
+skinparam DefaultFontColor DEFAULT_COLOR
+skinparam DefaultFontStyle bold
+skinparam Shadowing false
+skinparam ArrowColor ACCENT_GREEN_COLOR
+skinparam ArrowFontSize 10
+skinparam ClassBackgroundColor #FFF
+skinparam ClassBorderColor DEFAULT_COLOR
+skinparam ClassFontColor DEFAULT_COLOR
+skinparam ClassBorderColor DEFAULT_COLOR
+skinparam ClassHeaderBackgroundColor #FFF
+
+@enduml

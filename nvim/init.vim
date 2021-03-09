@@ -380,6 +380,7 @@ let g:airline_theme='bubblegum'
 let g:mkdp_auto_close = 0
 nmap <C-s> <Plug>MarkdownPreview
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -404,6 +405,11 @@ Plug 'vim-utils/vim-man'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'psliwka/vim-smoothie'
+
+"plantuml
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
+Plug 'weirongxu/plantuml-previewer.vim'
 
 call plug#end()
 
