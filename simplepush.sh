@@ -1,7 +1,7 @@
-cp ~/.config/nvim/init.vim ./nvim/init.vim
-cp ~/.config/nvim/coc-settings.json ./nvim/coc-settings.json
-cp ~/.config/nvim/colors/mycolor.vim ./nvim/colors/mycolor.vim
-cp -r ~/.config/nvim/syntax ./nvim/
+cp ~/.config/nvim/init.vim ./vim-config/nvim/init.vim
+cp ~/.config/nvim/coc-settings.json ./vim-config/nvim/coc-settings.json
+cp ~/.config/nvim/colors/mycolor.vim ./vim-config/nvim/colors/mycolor.vim
+cp -r ~/.config/nvim/syntax ./vim-config/nvim/
 cp ~/.hyper.js ./hyper-config/.hyper.js
 cp ~/.zshrc ./shell-zsh/.zshrc
 cp ~/.histfile ./misc/
