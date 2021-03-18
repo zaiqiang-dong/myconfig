@@ -8,7 +8,7 @@ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zl
 sudo apt-get install android-platform-tools-base
 sudo apt-get install android-tools-adb
 sudo apt-get install android-tools-fastboot
-sudo cp ./rules.d/* /etc/udev/rules.d/
+sudo cp ./misc/rules.d/* /etc/udev/rules.d/
 
 #ctags cscope
 sudo snap install universal-ctags
