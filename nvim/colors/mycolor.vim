@@ -15,7 +15,7 @@ let g:colors_name = "mycolor_modified"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 hi Comment 		ctermfg=031 ctermbg=NONE cterm=bold
-hi Normal 		ctermfg=248 ctermbg=NONE cterm=bold
+hi Normal 		ctermfg=248 ctermbg=232 cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 hi Directory 		ctermfg=031 ctermbg=NONE cterm=bold

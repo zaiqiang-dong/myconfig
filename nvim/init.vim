@@ -410,6 +410,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'vim-scripts/TagHighlight'
 
 call plug#end()
 
