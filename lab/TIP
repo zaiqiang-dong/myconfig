@@ -24,5 +24,6 @@ gdb:
     --append "rdinit=/init console=ttyS0 nokaslr"
 
 cgdb:
+    only 0.7.1 cgdb can show color in gdb window, upper version can not.
     need set debugger before -x file
     cgdb  -d /usr/bin/aarch64-linux-gnu-gdb  -x ~/code/myconfig/lab/gdbinit

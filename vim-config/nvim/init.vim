@@ -19,7 +19,7 @@ colorscheme mycolor
 
 set cursorline
 
-autocmd FileType c,cpp,java,python setlocal colorcolumn=81
+autocmd FileType c,cpp,java,python setlocal colorcolumn=91
 
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -380,6 +380,25 @@ let g:airline_theme='bubblegum'
 let g:mkdp_auto_close = 0
 nmap <C-s> <Plug>MarkdownPreview
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-table-mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>tm : TableModeEnable
+
+function! s:isAtStartOfLine(mapping)
+  let text_before_cursor = getline('.')[0 : col('.')-1]
+  let mapping_pattern = '\V' . escape(a:mapping, '\')
+  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+endfunction
+
+inoreabbrev <expr> <bar><bar>
+          \ <SID>isAtStartOfLine('\|\|') ?
+          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+inoreabbrev <expr> __
+          \ <SID>isAtStartOfLine('__') ?
+          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
@@ -410,7 +429,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
-Plug 'vim-scripts/TagHighlight'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 

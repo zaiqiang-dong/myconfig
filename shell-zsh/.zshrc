@@ -54,6 +54,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias g++='g++ --std=c++11'
 
+
 bindkey '^o' autosuggest-accept
 
 #history
