@@ -59,7 +59,7 @@ nmap <Space>h : set hlsearch<CR>
 nmap <Space>c : set nohlsearch<CR>
 
 "copy selected code
-vmap <leader>c "+y
+vmap <C-c> "+y
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function define
