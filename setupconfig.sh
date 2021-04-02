@@ -89,6 +89,9 @@ sudo npm install -g cowsay
 #for un/rar
 sudo apt install unrar rar
 
+#zathura pdf
+suod apt install zathura
+
 # vinager
 sudo apt install vinagre
 
