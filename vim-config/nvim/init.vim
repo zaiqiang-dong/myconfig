@@ -418,9 +418,11 @@ Plug 'ntpeters/vim-better-whitespace'
 "Plug 'voldikss/vim-translator'
 Plug 'rafalbromirski/vim-aurora'
 Plug 'srcery-colors/srcery-vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+
 Plug 'vim-utils/vim-man'
-"Plug 'skanehira/preview-markdown.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'psliwka/vim-smoothie'
