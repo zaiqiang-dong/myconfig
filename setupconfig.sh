@@ -95,6 +95,17 @@ suod apt install zathura
 # vinager
 sudo apt install vinagre
 
+# set backgroud
+sudo apt install feh
+
+# dwm
+sudo apt-get install suckless-tools libx11-dev libxft-dev libxinerama-dev gcc make
+sudo apt install flameshot
+
+# set font
+sudo cp ./font-config/* /usr/share/fonts/
+fc-cache -f -v
+
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
 
