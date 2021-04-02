@@ -35,30 +35,25 @@ sudo apt install python-flake8 python3-flake8 flake flake8
 
 #install neovim
 sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install -y neovim
+sudo apt install  neovim
 
 #add neovim config
-cp ./nvim ~/.config/ -r
+cp ./vim-config/nvim ~/.config/ -r
 
 #add clang tools
 sudo apt install clangd
 
 #for ssh config
-cp ./sshconfig/config ~/.ssh/
+cp ./ssh-config/config ~/.ssh/
 
 
 #for open ssl
 sudo apt-get install openssl
 sudo apt-get install libssl-dev
 
-#for sphinx
-apt-get install python3-sphinx
-
 #for termtosvg
-sudo pip3 install termtosvg
-sudo pip3 install pyte python-xlib svgwrite
+pip3 install termtosvg
+pip3 install pyte python-xlib svgwrite
 
 #for vuepress bolg system
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -83,11 +78,6 @@ sudo apt install fcitx fcitx-table-wbpy
 sudo apt install zsh
 sudo apt-get install subversion
 sudo chsh -s /bin/zsh
-
-#for terminator
-# sudo apt install terminator
-# cp ./terminator-config/terinator-config ~/.config/terminator/config
-
 
 #for ripgrep
 sudo apt  install ripgrep
