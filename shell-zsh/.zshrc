@@ -53,7 +53,13 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+bindkey -v
 bindkey '^o' autosuggest-accept
+bindkey '^p' up-line-or-history
+bindkey '^n' down-line-or-history
+bindkey '^e' history-search-multi-word
+bindkey '^w' backward-kill-word
+
 
 #history
 HISTFILE=~/.histfile
