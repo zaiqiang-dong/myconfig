@@ -5,21 +5,22 @@ set nu
 set enc=utf-8
 set fenc=utf-8
 set fencs=utf-8
+set mouse=nv
 
 autocmd FileType c setlocal noexpandtab tabstop=4
-autocmd FileType cpp,java,python,javascript setlocal expandtab tabstop=4
+autocmd FileType cc,cpp,java,python,javascript setlocal expandtab tabstop=4
 set smartindent
 set shiftwidth=4
 
 set foldenable
 set foldmethod=marker
 filetype plugin indent on
-syntax on
+syntax enable
 colorscheme mycolor
 
 set cursorline
 
-autocmd FileType c,cpp,java,python setlocal colorcolumn=91
+autocmd FileType cc,c,cpp,java,python,javascript setlocal colorcolumn=91
 
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -89,7 +90,7 @@ func! CompileGcc()
 endfunc
 func! CompileGpp()
     let compilecmd="!g++ "
-    let compileflag="--std=c++11 -o %< "
+    let compileflag="--std=c++14 -o %< "
     if search("mpi\.h") != 0
         let compilecmd = "!mpic++ "
     endif
@@ -120,7 +121,7 @@ endfunc
 
 
 func! CompileCode()
-        if &filetype == "cpp"
+        if &filetype == "cpp" || &filetype == "cc"
                 exec "call CompileGpp()"
         elseif &filetype == "c"
                 exec "call CompileGcc()"
@@ -142,7 +143,7 @@ func! RunResult()
             exec "!java %<"
         endif
 
-        if &filetype == "cpp"
+        if &filetype == "cpp" || &filetype == "cc"
 	    exec "!rm %<"
         elseif &filetype == "c"
 	    exec "!rm %<"
@@ -191,7 +192,7 @@ endfunc
 
 
 func CreateCTag()
-	silent exec "!find -iname \*.c -o  -iname \*.cpp -o -iname \*.h -o -iname \*.hpp -o -iname \*.java -o -iname \*.S -o -iname \*.s > cscope.files"
+	silent exec "!find -iname \*.c -o  -iname \*.cpp -o -iname \*.cc -o -iname \*.h -o -iname \*.hpp -o -iname \*.java -o -iname \*.S -o -iname \*.s > cscope.files"
 	silent exec "!cscope -Rbqk"
 	silent exec "!ctags -R;"
 	if filereadable("cscope.out")
@@ -206,7 +207,6 @@ endfunc
 " cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
-   set csprg=/usr/bin/cscope
    set csto=1
    set cst
    set nocsverb
@@ -350,7 +350,7 @@ map <leader>k <Plug>(Man)
 " indentline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType json,markdown let g:indentLine_conceallevel=0
-autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
+autocmd FileType javascript,python,c,cc,cpp,java,vim,shell let g:indentLine_conceallevel=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
