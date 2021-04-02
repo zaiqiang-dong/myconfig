@@ -52,9 +52,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias g++='g++ --std=c++11'
 
-bindkey -v
 bindkey '^o' autosuggest-accept
 
 #history
@@ -62,10 +60,8 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILESIZE=20000
-#setopt SHARE_HISTORY
-#
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+# setopt SHARE_HISTORY
+
 
 #env path
 export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/

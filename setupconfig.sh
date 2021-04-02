@@ -46,6 +46,9 @@ sudo apt install clangd
 #for ssh config
 cp ./ssh-config/config ~/.ssh/
 
+#open ssh
+sudo apt-get install openssh-server
+
 
 #for open ssl
 sudo apt-get install openssl
@@ -108,6 +111,10 @@ fc-cache -f -v
 
 # xbindkeys
 sudo apt install xbindkeys
+# bindkey
+sudo apt install bindkey
+# net tool
+sudo apt install net-tools
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
