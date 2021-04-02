@@ -106,6 +106,9 @@ sudo apt install flameshot
 sudo cp ./font-config/* /usr/share/fonts/
 fc-cache -f -v
 
+# xbindkeys
+sudo apt install xbindkeys
+
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
 
