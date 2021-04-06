@@ -432,6 +432,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 

@@ -116,6 +116,9 @@ sudo apt install bindkey
 # net tool
 sudo apt install net-tools
 
+# x11 config
+sudo cp ./X11-config/xorg.conf /etc/X11/xrdp/
+
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
 

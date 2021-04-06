@@ -1,5 +1,5 @@
 # Settings
-set font "Hack Nerd Font Mono 14"
+set font "Hack Nerd Font Mono 12"
 set font-style "bold"
 
 set window-title-basename true
