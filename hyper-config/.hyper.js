@@ -15,7 +15,7 @@ module.exports = {
     fontFamily: 'Hack Nerd Font Mono',
 
     // default font weight: 'normal' or 'bold'
-    fontWeight: 'normal',
+    fontWeight: 'bold',
 
     // font weight for bold characters: 'normal' or 'bold'
     fontWeightBold: 'bold',

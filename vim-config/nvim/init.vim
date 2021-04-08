@@ -20,7 +20,7 @@ colorscheme mycolor
 
 set cursorline
 
-autocmd FileType cc,c,cpp,java,python,javascript setlocal colorcolumn=91
+autocmd FileType cc,c,cpp,java,python,javascript setlocal colorcolumn=81
 
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -61,6 +61,39 @@ nmap <Space>c : set nohlsearch<CR>
 
 "copy selected code
 vmap <C-c> "+y
+
+"copy a word
+nmap vw ve
+
+nmap ma mA
+nmap mb mB
+nmap mc mC
+nmap md mD
+nmap me mE
+nmap mf mF
+nmap mg mG
+nmap mh mH
+nmap mj mJ
+nmap mk mK
+nmap ml mL
+nmap mm mM
+nmap mn mN
+
+nmap ;a 'A
+nmap ;b 'B
+nmap ;c 'C
+nmap ;d 'D
+nmap ;e 'E
+nmap ;f 'F
+nmap ;g 'G
+nmap ;h 'H
+nmap ;j 'J
+nmap ;k 'K
+nmap ;l 'L
+nmap ;m 'M
+nmap ;n 'N
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function define
@@ -271,7 +304,7 @@ let g:better_whitespace_enabled=1
 "tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_left=1
-let g:tagbar_width=30
+let g:tagbar_width=24
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -432,7 +465,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'kshenoy/vim-signature'
+"Plug 'kshenoy/vim-signature'
 
 call plug#end()
 
