@@ -47,6 +47,14 @@ hi CocSelectedText 	ctermfg=161 ctermbg=NONE cterm=bold
 hi CocListFgMagenta 	ctermfg=161 ctermbg=NONE cterm=bold
 hi CocListFgGreen 	ctermfg=106 ctermbg=NONE cterm=bold
 
+"translator
+hi TranslatorQuery  	ctermfg=051 ctermbg=NONE cterm=bold
+hi TranslatorExplain  	ctermfg=162 ctermbg=NONE cterm=bold
+hi TranslatorDelimiter  ctermfg=214 ctermbg=NONE cterm=bold
+
+hi Translator  		ctermfg=248 ctermbg=NONE cterm=bold
+hi TranslatorBorder  	ctermfg=031 ctermbg=NONE cterm=bold
+
 
 " cscope pop msg
 hi ModeMsg 		ctermfg=031 ctermbg=NONE cterm=bold

@@ -312,7 +312,7 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
 	    \		     'coc-python', 'coc-snippets', 'coc-pairs',
-	    \		     'coc-git', 'coc-word','coc-clangd', 'coc-translator']
+	    \		     'coc-git', 'coc-word','coc-clangd' ]
 
 nnoremap <silent> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
 
@@ -371,7 +371,6 @@ nmap <Space>f :CocList files<CR>
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-nmap <Leader>t <Plug>(coc-translator-p)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-man
@@ -432,6 +431,12 @@ inoreabbrev <expr> __
           \ <SID>isAtStartOfLine('__') ?
           \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-translator
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <Leader>t <Plug>TranslateW
+vmap <silent> <Leader>t <Plug>TranslateWV
+let g:translator_default_engines=["haici"]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
@@ -448,7 +453,7 @@ Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'ntpeters/vim-better-whitespace'
-"Plug 'voldikss/vim-translator'
+Plug 'voldikss/vim-translator'
 Plug 'rafalbromirski/vim-aurora'
 Plug 'srcery-colors/srcery-vim'
 
