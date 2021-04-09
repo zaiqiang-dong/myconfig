@@ -79,19 +79,19 @@ nmap ml mL
 nmap mm mM
 nmap mn mN
 
-nmap ;a 'A
-nmap ;b 'B
-nmap ;c 'C
-nmap ;d 'D
-nmap ;e 'E
-nmap ;f 'F
-nmap ;g 'G
-nmap ;h 'H
-nmap ;j 'J
-nmap ;k 'K
-nmap ;l 'L
-nmap ;m 'M
-nmap ;n 'N
+nmap 'a 'A
+nmap 'b 'B
+nmap 'c 'C
+nmap 'd 'D
+nmap 'e 'E
+nmap 'f 'F
+nmap 'g 'G
+nmap 'h 'H
+nmap 'j 'J
+nmap 'k 'K
+nmap 'l 'L
+nmap 'm 'M
+nmap 'n 'N
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function define
