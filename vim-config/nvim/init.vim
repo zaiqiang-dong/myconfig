@@ -480,6 +480,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow'
+Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'ntpeters/vim-better-whitespace'
