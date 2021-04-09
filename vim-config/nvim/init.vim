@@ -93,8 +93,6 @@ nmap ;l 'L
 nmap ;m 'M
 nmap ;n 'N
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function define
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -439,6 +437,37 @@ vmap <silent> <Leader>t <Plug>TranslateWV
 let g:translator_default_engines=["haici"]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nerdcommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' },'cpp': { 'left': '/*','right': '*/' }, 'cc': { 'left': '/*','right': '*/' }, 'python': {'left' : '#', 'right': ''}}
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+imap <C-k> <plug>NERDCommenterInsert
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/pluged')
@@ -449,6 +478,7 @@ Plug 'yggdroot/indentline'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'wsdjeg/FlyGrep.vim'

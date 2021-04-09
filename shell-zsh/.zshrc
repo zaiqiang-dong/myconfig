@@ -61,7 +61,7 @@ bindkey '^n' down-line-or-history
 bindkey '^e' history-search-multi-word
 bindkey '^w' backward-kill-word
 bindkey '^u' vi-forward-word
-bindkey '^j'
+bindkey '^j' clear-screen
 
 
 
