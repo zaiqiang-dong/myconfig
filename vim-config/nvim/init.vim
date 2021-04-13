@@ -502,6 +502,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'dhruvasagar/vim-table-mode'
 "Plug 'kshenoy/vim-signature'
+Plug 'zaiqiang-dong/vim-colorful'
 
 call plug#end()
 
