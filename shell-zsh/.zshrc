@@ -53,15 +53,16 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-bindkey -v
+#bindkey -v
 bindkey '^o' autosuggest-accept
 bindkey '^p' up-line-or-history
 bindkey '^n' down-line-or-history
 bindkey '^e' history-search-multi-word
 bindkey '^w' backward-kill-word
-bindkey '^u' vi-forward-word
-bindkey '^j' clear-screen
-bindkey '^d' backward-kill-word
+bindkey '^h' backward-char
+bindkey '^l' forward-char
+bindkey '^u' clear-screen
+bindkey '^d' end-of-line
 
 
 
