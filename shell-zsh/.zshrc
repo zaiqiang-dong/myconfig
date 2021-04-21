@@ -53,7 +53,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-
 bindkey -v
 bindkey '^o' autosuggest-accept
 bindkey '^p' up-line-or-history
@@ -62,6 +61,7 @@ bindkey '^e' history-search-multi-word
 bindkey '^w' backward-kill-word
 bindkey '^u' vi-forward-word
 bindkey '^j' clear-screen
+bindkey '^d' backward-kill-word
 
 
 
@@ -79,4 +79,5 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 #env path
 export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/
 
-fortune | cowsay -r
+#fortune | cowsay -r
+fortune | cowsay -f tortoise

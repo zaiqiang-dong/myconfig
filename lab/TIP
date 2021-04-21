@@ -27,3 +27,10 @@ cgdb:
     only 0.7.1 cgdb can show color in gdb window, upper version can not.
     need set debugger before -x file
     cgdb  -d /usr/bin/aarch64-linux-gnu-gdb  -x ~/code/myconfig/lab/gdbinit
+
+gdb can not stop at breakpoint:
+    need run with "nokaslr"
+
+debug seabios:
+    cgdb out/rom.o -x ~/code/myconfig/lab/seabios-gdbinit
+

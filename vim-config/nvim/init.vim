@@ -7,7 +7,7 @@ set fenc=utf-8
 set fencs=utf-8
 set mouse=nv
 
-autocmd FileType c setlocal noexpandtab tabstop=4
+autocmd FileType c,sh setlocal noexpandtab tabstop=4
 autocmd FileType cc,cpp,java,python,javascript setlocal expandtab tabstop=4
 set smartindent
 set shiftwidth=4
@@ -467,6 +467,16 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 imap <C-k> <plug>NERDCommenterInsert
+
+
+
+
+
+
+
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -489,7 +499,8 @@ Plug 'rafalbromirski/vim-aurora'
 Plug 'srcery-colors/srcery-vim'
 
 Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
+"Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 Plug 'vim-utils/vim-man'
 Plug 'godlygeek/tabular'
