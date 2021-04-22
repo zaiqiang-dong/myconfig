@@ -29,7 +29,7 @@ need_continue(){
         echo "continue $1!"
     else
         echo " stop $1 and exit!"
-	exit
+		exit
     fi
 }
 
