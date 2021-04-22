@@ -7,7 +7,3 @@ cp ~/.hyper.js ./hyper-config/.hyper.js
 cp ~/.zshrc ./shell-zsh/.zshrc
 cp ~/.histfile ./misc/
 
-git add .
-git commit -m "update"
-git push
-
