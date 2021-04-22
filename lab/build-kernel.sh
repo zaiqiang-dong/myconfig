@@ -56,9 +56,34 @@ if [ $1 == "x86_64" ];then
     OUTDIR="x86_64-build-out"
     ARCHDIR="x86"
     CONFIGFILE="x86_64_defconfig"
+    #CONFIGFILE="debian_defconfig"
     mkdir $OUTDIR
     need_copy_config $ARCHDIR $CONFIGFILE
     make menuconfig O=./$OUTDIR/
     need_continue "build"
+    make -j12 O=./$OUTDIR/
+fi
+
+if [ $1 == "arm64_E" ];then
+    echo "Config build env to aarch64"
+    export ARCH=arm64
+    export CROSS_COMPILE=aarch64-linux-gnu-
+    OUTDIR="arm64-build-out"
+    ARCHDIR="arm64"
+    CONFIGFILE="defconfig"
+    mkdir $OUTDIR
+    make $CONFIGFILE O=./$OUTDIR/
+    make -j12 O=./$OUTDIR/
+fi
+
+if [ $1 == "x86_64_E" ];then
+    echo "Config build env to x86_64"
+    export ARCH=x86_64
+    export CROSS_COMPILE=
+    OUTDIR="x86_64-build-out"
+    ARCHDIR="x86"
+    CONFIGFILE="x86_64_defconfig"
+    mkdir $OUTDIR
+    make $CONFIGFILE O=./$OUTDIR/
     make -j12 O=./$OUTDIR/
 fi
