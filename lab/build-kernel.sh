@@ -10,6 +10,7 @@ else
     echo "Set arch : $1"
 fi
 
+
 need_copy_config()
 {
     echo -n "Need copy config (y/n) "
@@ -33,6 +34,12 @@ need_continue(){
     fi
 }
 
+clear_build(){
+	if [ -d $1 ];then
+		echo "clear build"
+		rm -rf $1
+	fi
+}
 
 
 if [ $1 == "arm64" ];then
@@ -42,6 +49,7 @@ if [ $1 == "arm64" ];then
     OUTDIR="arm64-build-out"
     ARCHDIR="arm64"
     CONFIGFILE="defconfig"
+	clear_build $OUTDIR
     mkdir $OUTDIR
     need_copy_config $ARCHDIR $CONFIGFILE
     make menuconfig O=./$OUTDIR/
@@ -57,6 +65,7 @@ if [ $1 == "x86_64" ];then
     ARCHDIR="x86"
     CONFIGFILE="x86_64_defconfig"
     #CONFIGFILE="debian_defconfig"
+	clear_build $OUTDIR
     mkdir $OUTDIR
     need_copy_config $ARCHDIR $CONFIGFILE
     make menuconfig O=./$OUTDIR/
@@ -71,6 +80,7 @@ if [ $1 == "arm64_E" ];then
     OUTDIR="arm64-build-out"
     ARCHDIR="arm64"
     CONFIGFILE="defconfig"
+	clear_build $OUTDIR
     mkdir $OUTDIR
     make $CONFIGFILE O=./$OUTDIR/
     make -j12 O=./$OUTDIR/
@@ -83,6 +93,7 @@ if [ $1 == "x86_64_E" ];then
     OUTDIR="x86_64-build-out"
     ARCHDIR="x86"
     CONFIGFILE="x86_64_defconfig"
+	clear_build $OUTDIR
     mkdir $OUTDIR
     make $CONFIGFILE O=./$OUTDIR/
     make -j12 O=./$OUTDIR/
