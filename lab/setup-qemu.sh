@@ -3,14 +3,14 @@
 armmachine="-machine virt -cpu cortex-a57 -machine type=virt"
 armkernelimg="-kernel ./kernel/study-linux-5.8.18/arm64-build-out/arch/arm64/boot/Image"
 armrootfsimg="-hda ./rootfs/make-ubuntu-initrc/rootfs-aarch64.img"
-armappenarg='--append "root=/dev/vda console=ttyAMA0"'
+armappenarg='--append "root=/dev/vda console=ttyAMA0 rootfstype=ext4 rw"'
 armemulator="./qemu/study-qemu-5.2.0/build/qemu-system-aarch64"
 #armemulator="qemu-system-aarch64"
 
 x86machine="--enable-kvm -m 1024 -smp 1"
 x86kernelimg="-kernel ./kernel/study-linux-5.8.18/x86_64-build-out/arch/x86_64/boot/bzImage"
 x86rootfsimg="-hda ./rootfs/make-ubuntu-initrc/rootfs-amd64.img"
-x86appenarg='--append "root=/dev/sda console=ttyS0 nokaslr"'
+x86appenarg='--append "root=/dev/sda console=ttyS0 rootfstype=ext4 rw nokaslr"'
 x86emulator="./qemu/study-qemu-5.2.0/build/qemu-system-x86_64"
 x86bios="-bios ./qemu/study-qemu-5.2.0/roms/seabios/out/bios.bin"
 #x86emulator="qemu-system-x86_64"
@@ -21,9 +21,13 @@ rootfsimg=""
 appenarg=""
 emulator=""
 biosarg=""
+extraarg=""
 
-netarg="-net nic,model=e1000,netdev=m"
-netdevarg="-netdev tap,ifname=tap0,script=no,downscript=no,id=m"
+netvirtio="-netdev user,id=mv -device virtio-net-pci,netdev=mv"
+netbackfronend="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m"
+
+#netargs=$netbackfronend
+netargs=""
 nographicarg="-nographic"
 
 emulator=""
@@ -42,11 +46,13 @@ runhelp(){
 	echo "* -d --debug  set debug tartget <qemu|kernel|bios>    *"
 	echo "* -c --cpu    set cpu num                             *"
 	echo "* -m --memory set memory size ,<mb>                   *"
+	echo "* -e --extra  add extra args							*"
+	echo "* -n --net 	0 is back forn end, 1 is virtio dev 	*"
 	echo "*******************************************************"
 }
 
 
-ARGS=`getopt -o ha:d:c:m: --long --help,--arch:,--debug:,--cpu:,--memory:, -n "$0" -- "$@"`
+ARGS=`getopt -o ha:d:c:m:e:n: --long --help,--arch:,--debug:,--cpu:,--memory:,--extra:,--net: -n "$0" -- "$@"`
 if [[ ! $? -eq 0 ]]; then
 	echo ""
 	echo ""
@@ -107,7 +113,18 @@ while true; do
 			memarg="-m "$2
 			shift 2
 			;;
-
+		-e|--extra)
+			extraarg=$2
+			shift 2
+			;;
+		-n|--net)
+			if [[ $2 == "0" ]];then
+				netargs=$netbackfronend
+			elif [[ $2 == "1" ]];then
+				netargs=$netvirtio
+			fi
+			shift 2
+			;;
 		--)
 			shift
 			break
@@ -121,12 +138,18 @@ done
 
 
 echo "-----------------------------------------------"
-cmd=$debuger_begin" "$emulator" "$machine" "$cpuarg" "$memarg" "$kernelimg" "$rootfsimg" "$biosarg" "$netarg" "$netdevarg" "$nographicarg" "$appenarg" "$debuger_end
+cmd=$debuger_begin" "$emulator" "$machine" "$cpuarg" "$memarg" "$kernelimg" "$rootfsimg" "$biosarg" "$netargs" "$nographicarg" "$extraarg" "$appenarg" "$debuger_end
 echo $cmd
 
 #eval $cmd
 echo "-----------------------------------------------"
 
+# ./qemu/study-qemu-5.2.0/build/qemu-system-aarch64 -m 1024 -smp 1 \
+# 		-machine virt -cpu cortex-a57 -machine type=virt \
+# 		-kernel ./kernel/study-linux-5.8.18/arm64-build-out/arch/arm64/boot/Image \
+# 		-hda ./rootfs/make-mini-initrc/sda-rootfs.img \
+# 		-nographic \
+# 		--append "root=/dev/vda rdinit=/init console=ttyAMA0" \
 
 # if [ $1 = "ARM_64_UNB" ];then
 #     echo "run with arch=ARM_64"
@@ -162,6 +185,7 @@ echo "-----------------------------------------------"
 # 	-netdev tap,ifname=tap0,script=no,downscript=no,id=m \
 # 	-nographic \
 # 	--append "root=/dev/sda console=ttyS0 nokaslr"
+
 # if [ $1 = "x86_64_G_N" ];then
 #     echo "run with arch=x86_64"
 #     cgdb --args /home/dongzaiq/Downloads/qemu-5.2.0/build/qemu-system-x86_64 --enable-kvm -m 1024  -smp 1\
