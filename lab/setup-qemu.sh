@@ -4,8 +4,8 @@ armmachine="-machine virt -cpu cortex-a57 -machine type=virt"
 armkernelimg="-kernel ./kernel/study-linux-5.8.18/arm64-build-out/arch/arm64/boot/Image"
 armrootfsimg="-hda ./rootfs/make-ubuntu-initrc/rootfs-aarch64.img"
 armappenarg='--append "root=/dev/vda console=ttyAMA0 rootfstype=ext4 rw"'
-armemulator="./qemu/study-qemu-5.2.0/build/qemu-system-aarch64"
-#armemulator="qemu-system-aarch64"
+#armemulator="./qemu/study-qemu-5.2.0/build/qemu-system-aarch64"
+armemulator="qemu-system-aarch64"
 
 x86machine="--enable-kvm -m 1024 -smp 1"
 x86kernelimg="-kernel ./kernel/study-linux-5.8.18/x86_64-build-out/arch/x86_64/boot/bzImage"
@@ -61,7 +61,6 @@ if [[ ! $? -eq 0 ]]; then
 	echo ""
 	echo ""
 	echo ""
-	exit
 fi
 
 #echo ARGS=[$ARGS]
@@ -74,13 +73,13 @@ while true; do
 			exit
 			;;
 		-a|--arch)
-			if [ "$2" == "arm64" ];then
+			if [[ "$2" == "arm64"  ]];then
 				machine=$armmachine
 				kernelimg=$armkernelimg
 				rootfsimg=$armrootfsimg
 				appenarg=$armappenarg
 				emulator=$armemulator
-			elif [ "$2" == "x86_64" ]; then
+			elif [[ "$2" == "x86_64" ]]; then
 				machine=$x86machine
 				kernelimg=$x86kernelimg
 				rootfsimg=$x86rootfsimg
@@ -131,7 +130,6 @@ while true; do
 			;;
 		*)
 			echo "invalid args!"
-			exit
 			;;
 	esac
 done
