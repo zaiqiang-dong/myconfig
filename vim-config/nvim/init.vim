@@ -434,8 +434,9 @@ inoreabbrev <expr> __
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <Leader>t <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
-let g:translator_default_engines=["haici"]
+let g:translator_default_engines=["youdao"]
 
+runtime! ftplugin/man.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -502,7 +503,6 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 "Plug 'iamcco/markdown-preview.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-Plug 'vim-utils/vim-man'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'psliwka/vim-smoothie'
@@ -514,6 +514,7 @@ Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'dhruvasagar/vim-table-mode'
 "Plug 'kshenoy/vim-signature'
 Plug 'zaiqiang-dong/vim-colorful'
+Plug 'vim-utils/vim-man'
 
 call plug#end()
 
