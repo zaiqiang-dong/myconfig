@@ -436,7 +436,6 @@ nmap <silent> <Leader>t <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
 let g:translator_default_engines=["youdao"]
 
-runtime! ftplugin/man.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
