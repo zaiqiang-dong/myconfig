@@ -26,8 +26,8 @@ extraarg=""
 netvirtio="-netdev user,id=mv -device virtio-net-pci,netdev=mv"
 netbackfronend="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m"
 
-#netargs=$netbackfronend
-netargs=""
+netargs=$netbackfronend
+#netargs=""
 nographicarg="-nographic"
 
 emulator=""
@@ -139,7 +139,7 @@ echo "-----------------------------------------------"
 cmd=$debuger_begin" "$emulator" "$machine" "$cpuarg" "$memarg" "$kernelimg" "$rootfsimg" "$biosarg" "$netargs" "$nographicarg" "$extraarg" "$appenarg" "$debuger_end
 echo $cmd
 
-#eval $cmd
+eval $cmd
 echo "-----------------------------------------------"
 
 # ./qemu/study-qemu-5.2.0/build/qemu-system-aarch64 -m 1024 -smp 1 \

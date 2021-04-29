@@ -40,6 +40,7 @@ zinit snippet OMZP::rand-quote
 zinit ice svn
 zinit snippet OMZ::plugins/sudo
 
+
 #########################################################################
 # WARNING Manually download https://github.com/ohmyzsh/ohmyzsh.git  	#
 # And cp ~/a/ohmyzsh-master/plugins/history-substring-search/* to \	#
@@ -47,9 +48,10 @@ zinit snippet OMZ::plugins/sudo
 #########################################################################
 zinit snippet OMZ::plugins/history-substring-search
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=none,fg=1,bold"
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=none,fg=none,none"
 
 # zinit self-update
-# zinit update --all
+#zinit update --all
 
 #alias
 alias grep='grep --color=auto'
@@ -71,6 +73,8 @@ bindkey '^w' backward-kill-word
 bindkey '^h' backward-char
 bindkey '^l' forward-char
 bindkey '^u' clear-screen
+bindkey '^j' vi-forward-word
+bindkey '^k' vi-backward-word
 
 bindkey '^d' end-of-line
 
