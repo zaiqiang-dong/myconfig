@@ -28,15 +28,9 @@ zinit cdclear -q
 
 zinit ice svn
 zinit snippet OMZ::plugins/z
-
 zinit snippet OMZP::command-not-found
-
-zinit snippet OMZP::colored-man-pages
-
 zinit snippet OMZP::cp
-
 zinit snippet OMZP::rand-quote
-
 zinit ice svn
 zinit snippet OMZ::plugins/sudo
 
@@ -46,9 +40,9 @@ zinit snippet OMZ::plugins/sudo
 # And cp ~/a/ohmyzsh-master/plugins/history-substring-search/* to \	#
 #  .zinit/snippets/OMZ::plugins/history-substring-search/		#
 #########################################################################
-zinit snippet OMZ::plugins/history-substring-search
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=none,fg=1,bold"
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=none,fg=none,none"
+# zinit snippet OMZ::plugins/history-substring-search
+# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=none,fg=1,bold"
+# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=none,fg=none,none"
 
 # zinit self-update
 #zinit update --all
@@ -64,10 +58,10 @@ alias la='ls -A'
 alias l='ls -CF'
 
 bindkey '^o' autosuggest-accept
-# bindkey '^p' up-line-or-history
-# bindkey '^n' down-line-or-history
-bindkey '^p' history-substring-search-up
-bindkey '^n' history-substring-search-down
+bindkey '^p' up-line-or-history
+bindkey '^n' down-line-or-history
+# bindkey '^p' history-substring-search-up
+# bindkey '^n' history-substring-search-down
 bindkey '^e' history-search-multi-word
 bindkey '^w' backward-kill-word
 bindkey '^h' backward-char
@@ -91,7 +85,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 #env path
-export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/
+export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/:/snap/bin
 
 #fortune | cowsay -r
 fortune | cowsay -f tortoise
