@@ -24,14 +24,12 @@ sudo n stable
 
 #python
 sudo apt install python3-pip
-sudo apt install python-pip
 pip3 install pynvim
-pip install pynvim
-pip install jedi
 pip3 install jedi
-pip install neovim
 pip3 install neovim
-sudo apt install python-flake8 python3-flake8 flake flake8
+pip3 install pylint
+pip3 install 'python-language-server[yapf]'
+pip3 install flake8
 
 #install neovim
 sudo apt-get install software-properties-common
@@ -102,7 +100,7 @@ sudo apt install vinagre
 sudo apt install feh
 
 # dwm
-sudo apt-get install suckless-tools libx11-dev libxft-dev libxinerama-dev gcc make
+sudo apt-get install suckless-tools libx11-dev libxft-dev libxinerama-dev
 sudo apt install flameshot
 
 # set font
