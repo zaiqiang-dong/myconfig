@@ -118,7 +118,7 @@ sudo apt install net-tools
 sudo cp ./X11-config/xorg.conf /etc/X11/xrdp/
 
 #autoacp
-sudo cp ./misc/autoacp.sh /usr/bin/autoacp
+sudo cp ./misc/autoacp.sh /usr/bin/agit
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
