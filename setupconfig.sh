@@ -23,6 +23,7 @@ sudo npm install n -g
 sudo n stable
 
 #python
+sudo apt install python2.7-dev
 sudo apt install python3-pip
 pip3 install pynvim
 pip3 install jedi
@@ -115,10 +116,24 @@ sudo apt install bindkey
 sudo apt install net-tools
 
 # x11 config
-sudo cp ./X11-config/xorg.conf /etc/X11/xrdp/
+# sudo cp ./X11-config/xorg.conf /etc/X11/xrdp/
+
+#build kernel
+sudo apt install libelf-dev
 
 #autoacp
-sudo cp ./misc/autoacp.sh /usr/bin/agit
+sudo cp ./misc/agit.sh /usr/bin/agit
+sudo cp ./misc/vman.sh /usr/bin/vman
+cp ./misc/cgdbrc ~/.cgdb
+
+#build
+sudo apt install ninja-build
+sudo apt-get install libglib2.0-dev
+sudo apt-get install libpixman-1-dev
+
+#aarch gcc
+sudo apt install gcc-aarch64-linux-gnu
+
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
