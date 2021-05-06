@@ -5,5 +5,4 @@ cp ~/.config/zathura/zathurarc ./zathura-config/
 cp -r ~/.config/nvim/syntax ./vim-config/nvim/
 cp ~/.hyper.js ./hyper-config/.hyper.js
 cp ~/.zshrc ./shell-zsh/.zshrc
-cp ~/.histfile ./misc/
 
