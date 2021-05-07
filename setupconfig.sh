@@ -1,5 +1,6 @@
 #sudo apt-get install vim-gnome
 
+
 #for java
 sudo apt-get install openjdk-8-jdk
 
@@ -134,6 +135,9 @@ sudo apt-get install libpixman-1-dev
 #aarch gcc
 sudo apt install gcc-aarch64-linux-gnu
 
+
+git config --global user.email "zqdong@nreal.ai"
+git config --global user.name "zqdong"
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
