@@ -12,7 +12,7 @@ sudo apt-get install android-tools-fastboot
 sudo cp ./misc/rules.d/* /etc/udev/rules.d/
 
 #ctags cscope
-sudo snap install universal-ctags
+sudo apt install universal-ctags
 sudo apt-get install cscope
 
 #nodejs
@@ -125,7 +125,8 @@ sudo apt install libelf-dev
 #autoacp
 sudo cp ./misc/agit.sh /usr/bin/agit
 sudo cp ./misc/vman.sh /usr/bin/vman
-cp ./misc/cgdbrc ~/.cgdb
+mkdir ~/.cgdb
+cp ./misc/cgdbrc ~/.cgdb/cgdbrc
 
 #build
 sudo apt install ninja-build
@@ -136,8 +137,10 @@ sudo apt-get install libpixman-1-dev
 sudo apt install gcc-aarch64-linux-gnu
 
 
+#git config
 git config --global user.email "zqdong@nreal.ai"
 git config --global user.name "zqdong"
+git config --global core.editor "vim"
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
