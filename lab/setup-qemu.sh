@@ -7,7 +7,7 @@ armappenarg='--append "root=/dev/vda console=ttyAMA0 rootfstype=ext4 rw"'
 #armemulator="./qemu/study-qemu-5.2.0/build/qemu-system-aarch64"
 armemulator="qemu-system-aarch64"
 
-x86machine="--enable-kvm -m 1024 -smp 1"
+x86machine="-m 1024 -smp 1"
 x86kernelimg="-kernel ./kernel/study-linux-5.8.18/x86_64-build-out/arch/x86_64/boot/bzImage"
 x86rootfsimg="-hda ./rootfs/make-ubuntu-initrc/rootfs-amd64.img"
 x86appenarg='--append "root=/dev/sda console=ttyS0 rootfstype=ext4 rw nokaslr"'
@@ -26,7 +26,8 @@ extraarg=""
 netvirtio="-netdev user,id=mv -device virtio-net-pci,netdev=mv"
 netbackfronend="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m"
 
-netargs=$netbackfronend
+#netargs=$netbackfronend
+netargs=$netargs
 #netargs=""
 nographicarg="-nographic"
 
@@ -37,6 +38,7 @@ debuger_end=""
 
 cpuarg="-smp 1"
 memarg="-m 1024"
+kvmenable="--enable-kvm"
 
 runhelp(){
 	echo "****************** help   info ************************"
@@ -79,6 +81,7 @@ while true; do
 				rootfsimg=$armrootfsimg
 				appenarg=$armappenarg
 				emulator=$armemulator
+				kvmenable=""
 			elif [[ "$2" == "x86_64" ]]; then
 				machine=$x86machine
 				kernelimg=$x86kernelimg
@@ -90,15 +93,16 @@ while true; do
 			shift 2
 			;;
 		-d|--debug)
+			kvmenable=""
 			case "$2" in
 				qemu)
 					debuger_begin="cgdb --args "
 					;;
 				kernel)
-					debuger_end="-S -s"
+					debuger_end="-s -S"
 					;;
 				bios)
-					debuger_end="-S -s"
+					debuger_end="-s -S"
 					;;
 			esac
 			shift 2
@@ -136,7 +140,7 @@ done
 
 
 echo "-----------------------------------------------"
-cmd=$debuger_begin" "$emulator" "$machine" "$cpuarg" "$memarg" "$kernelimg" "$rootfsimg" "$biosarg" "$netargs" "$nographicarg" "$extraarg" "$appenarg" "$debuger_end
+cmd=$debuger_begin" "$emulator" "$kvmenable" "$machine" "$cpuarg" "$memarg" "$kernelimg" "$rootfsimg" "$biosarg" "$netargs" "$nographicarg" "$extraarg" "$appenarg" "$debuger_end
 echo $cmd
 
 eval $cmd

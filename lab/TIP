@@ -28,9 +28,9 @@ cgdb:
     need set debugger before -x file
     cgdb  -d /usr/bin/aarch64-linux-gnu-gdb  -x ~/code/myconfig/lab/gdbinit
 
-gdb can not stop at breakpoint:
-    need run with "nokaslr"
-
 debug seabios:
     cgdb out/rom.o -x ~/code/myconfig/lab/seabios-gdbinit
 
+
+cgdb
+    if need debug kernel, can not use --enable-kvm
