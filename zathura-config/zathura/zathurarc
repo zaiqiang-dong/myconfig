@@ -1,6 +1,5 @@
 # Settings
 set font "Hack Nerd Font Mono 14"
-set font-style "bold"
 
 set window-title-basename true
 set incremental-search false
@@ -21,9 +20,6 @@ set highlight-active-color "mediumturquoise"
 set highlight-color "tomato"
 set completion-highlight-fg "mediumturquoise"
 set completion-highlight-bg "#313131"
-set tabbar-fg "whitesmoke"
-set tabbar-bg "black"
-set tabbar-focus-bg "#313131"
 set index-active-bg "#313131"
 set index-active-fg "mediumturquoise"
 

@@ -139,7 +139,7 @@ sudo apt install gcc-aarch64-linux-gnu
 
 #git config
 git config --global user.email "zqdong@nreal.ai"
-git config --global user.name "zqdong"
+git config --global user.name "Zaiqiang Dong"
 git config --global core.editor "vim"
 
 #for env config
