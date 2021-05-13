@@ -4,12 +4,54 @@ OUTDIR=""
 ARCHDIR=""
 CONFIGFILE=""
 
+# export INSTALL_PATH=$PWD/tmprfs/boot/
+# export INSTALL_MOD_PATH=$PWD/tmprfs/
+# export INSTALL_HDR_PATH=$PWD/tmprfs/usr/
+
 if [ ! -n "$1" ] ;then
     echo "You should set arch, ths!"
 else
     echo "Set arch : $1"
 fi
 
+install_rootfs()
+{
+	cd $OUTDIR
+	mkdir tmprfs
+	if [ $OUTDIR == "x86_64-build-out" ];then
+		/usr/bin/expect <<-EOF
+			spawn sudo mount -t ext4 /home/dongzaiq/work/lab/rootfs/make-ubuntu-initrc/rootfs-amd64.img ./tmprfs
+			expect {
+				"dongzaiq:" { send "isbn7810\r"; }
+			}
+			expect eof
+		EOF
+	fi
+	sleep 5
+	if [ $OUTDIR == "arm64-build-out" ];then
+		/usr/bin/expect <<-EOF
+			spawn sudo mount -t ext4 /home/dongzaiq/work/lab/rootfs/make-ubuntu-initrc/rootfs-aarch64.img ./tmprfs
+			expect {
+				"dongzaiq:" { send "isbn7810\r"; }
+			}
+			expect eof
+		EOF
+	fi
+
+	sudo make install INSTALL_PATH=$PWD/tmprfs/boot/
+	sudo make modules_install INSTALL_MOD_PATH=$PWD/tmprfs/
+	sudo make headers_install INSTALL_HDR_PATH=$PWD/tmprfs/usr/
+
+
+	/usr/bin/expect <<-EOF
+		spawn sudo umount ./tmprfs
+		expect {
+			"dongzaiq:" { send "isbn7810\r"; }
+		}
+		expect eof
+	EOF
+	cd ..
+}
 
 need_copy_config()
 {
@@ -64,13 +106,13 @@ if [ $1 == "x86_64" ];then
     OUTDIR="x86_64-build-out"
     ARCHDIR="x86"
     CONFIGFILE="x86_64_defconfig"
-    #CONFIGFILE="debian_defconfig"
 	clear_build $OUTDIR
     mkdir $OUTDIR
     need_copy_config $ARCHDIR $CONFIGFILE
     make menuconfig O=./$OUTDIR/
     need_continue "build"
     make -j12 O=./$OUTDIR/
+	install_rootfs
 fi
 
 if [ $1 == "arm64_E" ];then
@@ -93,7 +135,7 @@ if [ $1 == "x86_64_E" ];then
     OUTDIR="x86_64-build-out"
     ARCHDIR="x86"
     CONFIGFILE="x86_64_defconfig"
-	clear_build $OUTDIR
+	#clear_build $OUTDIR
     mkdir $OUTDIR
     make $CONFIGFILE O=./$OUTDIR/
     make -j12 O=./$OUTDIR/

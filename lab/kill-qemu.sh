@@ -1,10 +1,10 @@
-p=(`ps -e | grep "qemu" | awk '$1=$1'`)
+p=`ps -e | grep "qemu" | awk '$1=$1'`
 echo $p
-array=($p)
+array=$p
 
 kill $array[1]
-p=(`ps -e | grep "qemu" | awk '$1=$1'`)
+p=`ps -e | grep "qemu" | awk '$1=$1'`
 echo $p
-array=($p)
+array=$p
 
 kill $array[1]

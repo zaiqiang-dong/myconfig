@@ -27,7 +27,11 @@ apt install -y wireless-tools
 apt install -y dhcpcd5
 apt install -y resolvconf
 apt install -y avahi-utils
-apt install -y iw
+apt install -y kmod
+apt install -y inetutils-ping
+apt install -y openssh-client
+apt install -y openssh-server
+apt install -y linux-firmware
 
 
 echo "config root password: "

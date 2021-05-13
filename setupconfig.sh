@@ -136,11 +136,13 @@ sudo apt-get install libpixman-1-dev
 #aarch gcc
 sudo apt install gcc-aarch64-linux-gnu
 
+sudo apt install -y expect
 
 #git config
 git config --global user.email "zqdong@nreal.ai"
 git config --global user.name "Zaiqiang Dong"
 git config --global core.editor "vim"
+
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
