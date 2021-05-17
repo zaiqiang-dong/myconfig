@@ -11,9 +11,9 @@ x86machine="-m 1024 -smp 1"
 x86kernelimg="-kernel ./kernel/study-linux-5.8.18/x86_64-build-out/arch/x86_64/boot/bzImage"
 x86rootfsimg="-hda ./rootfs/make-ubuntu-initrc/rootfs-amd64.img"
 x86appenarg='--append "root=/dev/sda console=ttyS0 rootfstype=ext4 rw nokaslr"'
-#x86emulator="./qemu/study-qemu-5.2.0/build/qemu-system-x86_64"
+x86emulator="./qemu/study-qemu-5.2.0/build/qemu-system-x86_64"
 x86bios="-bios ./qemu/study-qemu-5.2.0/roms/seabios/out/bios.bin"
-x86emulator="qemu-system-x86_64"
+#x86emulator="qemu-system-x86_64"
 
 machine=""
 kernelimg=""

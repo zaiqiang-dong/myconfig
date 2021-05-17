@@ -35,14 +35,10 @@ zinit ice svn
 zinit snippet OMZ::plugins/sudo
 
 
-#########################################################################
-# WARNING Manually download https://github.com/ohmyzsh/ohmyzsh.git  	#
-# And cp ~/a/ohmyzsh-master/plugins/history-substring-search/* to \	#
-#  .zinit/snippets/OMZ::plugins/history-substring-search/		#
-#########################################################################
-# zinit snippet OMZ::plugins/history-substring-search
-# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=none,fg=1,bold"
-# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=none,fg=none,none"
+zinit light zsh-users/zsh-history-substring-search
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=none,fg=1,bold"
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=none,fg=none,none"
 
 # zinit self-update
 #zinit update --all
@@ -58,17 +54,17 @@ alias la='ls -A'
 alias l='ls -CF'
 
 bindkey '^o' autosuggest-accept
-bindkey '^p' up-line-or-history
-bindkey '^n' down-line-or-history
-# bindkey '^p' history-substring-search-up
-# bindkey '^n' history-substring-search-down
-bindkey '^e' history-search-multi-word
+# bindkey '^p' up-line-or-history
+# bindkey '^n' down-line-or-history
+bindkey '^p' history-substring-search-up
+bindkey '^n' history-substring-search-down
+#bindkey '^e' history-search-multi-word
 bindkey '^w' backward-kill-word
 bindkey '^h' backward-char
 bindkey '^l' forward-char
 bindkey '^u' clear-screen
-bindkey '^j' vi-forward-word
-bindkey '^k' vi-backward-word
+bindkey '^k' vi-forward-word
+bindkey '^j' vi-backward-word
 
 bindkey '^d' end-of-line
 
@@ -85,7 +81,8 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 #env path
-export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/:/snap/bin
+export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/:/snap/bin:
+export EDITOR="/usr/bin/vim"
 
 #fortune | cowsay -r
 fortune | cowsay -f tortoise

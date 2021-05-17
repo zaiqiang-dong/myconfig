@@ -32,6 +32,9 @@ apt install -y inetutils-ping
 apt install -y openssh-client
 apt install -y openssh-server
 apt install -y linux-firmware
+apt install -y python
+apt install -y vim
+apt install -y bluetooth bluez bluez-tools rfkill
 
 
 echo "config root password: "

@@ -9,13 +9,13 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 15,
+    fontSize: 12,
 
     // font family with optional fallbacks
-    fontFamily: 'Hack Nerd Font Mono',
+    fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
     // default font weight: 'normal' or 'bold'
-    fontWeight: 'bold',
+    fontWeight: 'normal',
 
     // font weight for bold characters: 'normal' or 'bold'
     fontWeightBold: 'bold',
@@ -39,17 +39,17 @@ module.exports = {
     cursorBlink: false,
 
     // color of the text
-    foregroundColor: '#FFF8DC',
+    foregroundColor: '#fff',
 
     // terminal background color
     // opacity is only supported on macOS
     backgroundColor: '#000',
 
     // terminal selection color
-    selectionColor: 'rgba(255,255,255,0.3)',
+    selectionColor: 'rgba(248,28,229,0.3)',
 
     // border color (window, tabs)
-    borderColor: 'cyan',
+    borderColor: '#333',
 
     // custom CSS to embed in the main window
     css: '',
@@ -67,28 +67,28 @@ module.exports = {
     showWindowControls: '',
 
     // custom padding (CSS format, i.e.: `top right bottom left`)
-    padding: '0px 0px',
+    padding: '12px 14px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
     colors: {
-      black: 'black',
-      red: 'tomato',
-      green: 'mediumseagreen',
-      yellow: 'gold',
-      blue: 'steelblue',
-      magenta: 'mediumvioletred',
-      cyan: 'mediumturquoise',
-      white: 'whitesmoke',
-      lightBlack: 'dimgray',
-      lightRed: 'salmon',
-      lightGreen: 'mediumspringgreen',
-      lightYellow: 'khaki',
-      lightBlue: 'lightskyblue',
-      lightMagenta: 'hotpink',
-      lightCyan: 'cyan',
-      lightWhite: 'white',
+      black: '#000000',
+      red: '#C51E14',
+      green: '#1DC121',
+      yellow: '#C7C329',
+      blue: '#0A2FC4',
+      magenta: '#C839C5',
+      cyan: '#20C5C6',
+      white: '#C7C7C7',
+      lightBlack: '#686868',
+      lightRed: '#FD6F6B',
+      lightGreen: '#67F86F',
+      lightYellow: '#FFFA72',
+      lightBlue: '#6A76FB',
+      lightMagenta: '#FD7CFC',
+      lightCyan: '#68FDFE',
+      lightWhite: '#FFFFFF',
     },
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
@@ -113,7 +113,7 @@ module.exports = {
     env: {},
 
     // set to `false` for no bell
-    bell: 'false',
+    bell: 'SOUND',
 
     // if `true` (without backticks and without quotes), selected text will automatically be copied to the clipboard
     copyOnSelect: false,
@@ -137,15 +137,7 @@ module.exports = {
     // rendering (slower, but supports transparent backgrounds)
     webGLRenderer: true,
 
-    scrollback: 1000000,
     // for advanced config flags please refer to https://hyper.is/#cfg
-
-    // for plugin config
-    hyperSearchUI: {
-        inputBorderRadius: 2,
-        buttonBorderRadius: 2,
-    },
-
   },
 
   // a list of plugins to fetch and install from npm
@@ -154,7 +146,7 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ["hypercwd", "hyper-search", "hyper-yes", "hyper-fading-scrollbar"],
+  plugins: [],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
@@ -164,10 +156,5 @@ module.exports = {
   keymaps: {
     // Example
     // 'window:devtools': 'cmd+alt+o',
-        'window:preferences':'ctrl+shift+alt+,',
-        'tab:next':'ctrl+,',
-        'tab:prev':'ctrl+.',
-        "pane:next": "ctrl+shift+,",
-        "pane:prev": "ctrl+shift+.",
   },
 };

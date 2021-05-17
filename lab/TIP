@@ -34,3 +34,7 @@ debug seabios:
 
 cgdb
     if need debug kernel, can not use --enable-kvm
+
+wificonnect
+sudo nmcli dev wifi connect "ssid" password "passwd"
+

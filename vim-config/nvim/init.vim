@@ -6,6 +6,7 @@ set enc=utf-8
 set fenc=utf-8
 set fencs=utf-8
 set mouse=nv
+set backupcopy=yes
 
 autocmd FileType c,sh setlocal noexpandtab tabstop=4
 autocmd FileType cc,cpp,java,python,javascript setlocal expandtab tabstop=4
@@ -469,11 +470,17 @@ let g:NERDToggleCheckAllLines = 1
 imap <C-k> <plug>NERDCommenterInsert
 
 
-
-
-
-
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vista
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:vista_default_executive = 'ctags'
+" autocmd FileType c,cpp,h :Vista!!
+" autocmd bufenter * if (winnr("$") == 1 && &filetype =~# 'vista') | q | endif
+" let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" let g:vista#renderer#icons = {
+" 			\   "function": "\uf794",
+" 			\   "variable": "\uf71b",
+" 			\  }
 
 
 
@@ -505,6 +512,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'psliwka/vim-smoothie'
+
+" Plug 'liuchengxu/vista.vim'
 
 "plantuml
 Plug 'tyru/open-browser.vim'

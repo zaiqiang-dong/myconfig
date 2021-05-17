@@ -27,7 +27,6 @@ install_rootfs()
 			expect eof
 		EOF
 	fi
-	sleep 5
 	if [ $OUTDIR == "arm64-build-out" ];then
 		/usr/bin/expect <<-EOF
 			spawn sudo mount -t ext4 /home/dongzaiq/work/lab/rootfs/make-ubuntu-initrc/rootfs-aarch64.img ./tmprfs
@@ -79,7 +78,13 @@ need_continue(){
 clear_build(){
 	if [ -d $1 ];then
 		echo "clear build"
-		rm -rf $1
+		/usr/bin/expect <<-EOF
+			spawn sudo rm -rf $1
+			expect {
+				"dongzaiq:" { send "isbn7810\r"; }
+			}
+			expect eof
+		EOF
 	fi
 }
 
