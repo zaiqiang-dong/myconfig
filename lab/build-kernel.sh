@@ -140,7 +140,7 @@ if [ $1 == "x86_64_E" ];then
     OUTDIR="x86_64-build-out"
     ARCHDIR="x86"
     CONFIGFILE="x86_64_defconfig"
-	#clear_build $OUTDIR
+	clear_build $OUTDIR
     mkdir $OUTDIR
     make $CONFIGFILE O=./$OUTDIR/
     make -j12 O=./$OUTDIR/

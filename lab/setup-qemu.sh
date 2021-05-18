@@ -94,12 +94,12 @@ while true; do
 			shift 2
 			;;
 		-d|--debug)
-			kvmenable=""
 			case "$2" in
 				qemu)
 					debuger_begin="cgdb --args "
 					;;
 				kernel)
+					kvmenable=""
 					debuger_end="-s -S"
 					;;
 				bios)
