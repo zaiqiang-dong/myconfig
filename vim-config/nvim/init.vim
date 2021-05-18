@@ -7,6 +7,7 @@ set fenc=utf-8
 set fencs=utf-8
 set mouse=nv
 set backupcopy=yes
+set updatetime=100
 
 autocmd FileType c,sh setlocal noexpandtab tabstop=4
 autocmd FileType cc,cpp,java,python,javascript setlocal expandtab tabstop=4
@@ -304,7 +305,8 @@ let g:better_whitespace_enabled=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_left=1
 let g:tagbar_width=24
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+"autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd FileType * TagbarOpen
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc-nvim
