@@ -306,7 +306,7 @@ let g:better_whitespace_enabled=1
 let g:tagbar_left=1
 let g:tagbar_width=24
 "autocmd VimEnter * nested :call tagbar#autoopen(1)
-autocmd FileType * TagbarOpen
+autocmd FileType * call tagbar#autoopen(1)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc-nvim
