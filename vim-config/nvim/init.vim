@@ -22,6 +22,9 @@ colorscheme mycolor
 
 set cursorline
 
+set path+=/usr/include/**
+set path+=$PWD/**
+
 autocmd FileType cc,c,cpp,java,python,javascript setlocal colorcolumn=81
 
 if has("autocmd")
@@ -44,6 +47,8 @@ nmap dp d^
 "delete all after char
 nmap da d$
 
+nmap <C-h> :vertical resize +2<CR>
+nmap <C-l> :vertical resize -2<CR>
 "open right file list
 nmap <leader>n :NERDTreeToggle<CR>
 
