@@ -53,6 +53,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+clear-screen() { echoti clear; precmd; zle redisplay; }
+zle -N clear-screen
+
 bindkey '^o' autosuggest-accept
 # bindkey '^p' up-line-or-history
 # bindkey '^n' down-line-or-history
@@ -81,7 +84,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 #env path
-export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r15c:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/:/snap/bin:
+export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r18b/:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/:/snap/bin:
 export EDITOR="/usr/bin/vim"
 
 #fortune | cowsay -r

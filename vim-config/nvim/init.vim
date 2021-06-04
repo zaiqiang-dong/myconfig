@@ -9,7 +9,7 @@ set mouse=nv
 set backupcopy=yes
 set updatetime=100
 
-autocmd FileType c,sh setlocal noexpandtab tabstop=4
+autocmd FileType c,sh,make setlocal noexpandtab tabstop=4
 autocmd FileType cc,cpp,java,python,javascript setlocal expandtab tabstop=4
 set smartindent
 set shiftwidth=4
