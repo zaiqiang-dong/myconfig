@@ -80,7 +80,7 @@ sudo apt install fcitx fcitx-table-wbpy
 #for zsh
 sudo apt install zsh
 sudo apt-get install subversion
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh
 
 #for ripgrep
 sudo apt  install ripgrep
