@@ -1,0 +1,3 @@
+20 7 * * * cd /home/dongzaiq/work/lab/;./auto-make.sh
+15 12 * * * cd /home/dongzaiq/work/lab/;./auto-make.sh
+40 18 * * * cd /home/dongzaiq/work/lab/;./auto-make.sh
