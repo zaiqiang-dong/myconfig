@@ -24,7 +24,7 @@ biosarg=""
 extraarg=""
 
 netvirtio="-netdev user,id=mv -device virtio-net-pci,netdev=mv"
-netvirtiovhost="-netdev user,id=mv -device virtio-net-pci,netdev=mv"
+netvhost="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m,vhost=on"
 netbackfronend="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m"
 netpassthrough="-device vfio-pci,host=05:00.0,id=net0"
 
@@ -128,7 +128,7 @@ while true; do
 			elif [[ $2 == "1" ]];then
 				netargs=$netvirtio
 			elif [[ $2 == "2" ]];then
-				netargs=$netvirtiovhost
+				netargs=$netvhost
 			elif [[ $2 == "3" ]];then
 				netargs=$netpassthrough
 			fi

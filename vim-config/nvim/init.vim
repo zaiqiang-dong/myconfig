@@ -68,6 +68,7 @@ nmap <Space>c : set nohlsearch<CR>
 
 "copy selected code
 vmap <C-c> "+y
+set clipboard=unnamedplus
 
 "copy a word
 nmap vw ve
@@ -454,8 +455,9 @@ let g:NERDCreateDefaultMappings = 1
 let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+let g:NERDCompactSexyComs = 0
 
+let g:NERDCommenterSexyComments = ''
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
@@ -463,7 +465,11 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' },'cpp': { 'left': '/*','right': '*/' }, 'cc': { 'left': '/*','right': '*/' }, 'python': {'left' : '#', 'right': ''}}
+let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/','leftAlt': '/*','rightAlt': '*/' },
+			       \ 'cpp': { 'left': '/*','right': '*/','leftAlt': '/*','rightAlt': '*/' },
+			       \ 'cc': { 'left': '/*','right': '*/','leftAlt': '/*','rightAlt': '*/' },
+			       \ 'python': {'left':'#','right':''}
+			     \ }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -475,7 +481,8 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 imap <C-k> <plug>NERDCommenterInsert
-
+vmap gcu <plug>NERDCommenterUncomment
+vmap gcc <plug>NERDCommenterSexy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vista
@@ -501,7 +508,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'yggdroot/indentline'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow'
 Plug 'honza/vim-snippets'

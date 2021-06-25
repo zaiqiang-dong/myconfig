@@ -4,7 +4,7 @@ if [[ "$(id -u)" -ne "0" ]]; then
     exit 1
 fi
 rootfsdir=base
-rootfssize=10240
+rootfssize=1024M
 rootfstmp=rtmp
 rootfsimg=rootfs
 
@@ -42,7 +42,7 @@ sudo ln -s ./$rootfsdir/lib/systemd/systemd ./$rootfsdir/sbin/init
 if [ -f  $rootfsimg ];then
 	rm -rf $rootfsimg
 fi
-dd if=/dev/zero of=$rootfsimg bs=1M count=$rootfssize status=progress
+dd if=/dev/zero of=$rootfsimg bs=$rootfssize count=2 status=progress
 if [ -d  $rootfstmp ];then
 	rm -rf $rootfstmp
 fi

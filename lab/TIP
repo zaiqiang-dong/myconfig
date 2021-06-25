@@ -35,6 +35,19 @@ debug seabios:
 cgdb
     if need debug kernel, can not use --enable-kvm
 
+
+passthrough dev
+
+    1:
+    vim /etc/default/grub
+    modify GRUB_CMDLINE_LINUX="intel_iommu=on"
+    sudo update-grub
+    sudo reboot
+
+    2:
+    sudo su
+    run myconfig/lab/passthrough.sh
+
 wificonnect
 sudo nmcli dev wifi connect "ssid" password "passwd"
 
