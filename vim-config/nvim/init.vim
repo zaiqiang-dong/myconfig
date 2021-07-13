@@ -47,6 +47,9 @@ nmap dp d^
 "delete all after char
 nmap da d$
 
+"select to end
+nmap va v$
+
 nmap <C-h> :vertical resize +2<CR>
 nmap <C-l> :vertical resize -2<CR>
 "open right file list
@@ -202,6 +205,7 @@ endfunc
 func FormatC()
 	if &filetype == 'c' || &filetype == 'h'
 		exec "!astyle --style=linux --suffix=none  --indent=force-tab=4 --pad-comma --align-reference=name --break-blocks %"
+		exec "e"
 	endif
 endfunc
 
@@ -311,12 +315,11 @@ let g:better_whitespace_enabled=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_left=1
 let g:tagbar_width=24
-"autocmd VimEnter * nested :call tagbar#autoopen(1)
 autocmd FileType * call tagbar#autoopen(1)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc-nvim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions=['coc-tsserver','coc-lists','coc-java',
 	    \		     'coc-python', 'coc-snippets', 'coc-pairs',
 	    \		     'coc-git', 'coc-word','coc-clangd' ]
@@ -443,7 +446,7 @@ inoreabbrev <expr> __
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <Leader>t <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
-let g:translator_default_engines=["youdao"]
+let g:translator_default_engines=["google"]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter
@@ -452,7 +455,7 @@ let g:translator_default_engines=["youdao"]
 let g:NERDCreateDefaultMappings = 1
 
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 0
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 0
@@ -508,7 +511,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'yggdroot/indentline'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow'
 Plug 'honza/vim-snippets'

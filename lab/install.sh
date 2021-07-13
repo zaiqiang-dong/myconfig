@@ -1,7 +1,7 @@
 #!/bin/bash
 
-USER=testuser
-HOSTNAME=hostname
+USER=QQ
+HOSTNAME=QEMU
 PASSWD=123456
 export DEBIAN_FRONTEND=noninteractive
 
@@ -28,6 +28,7 @@ apt install -y dhcpcd5
 apt install -y resolvconf
 apt install -y avahi-utils
 apt install -y iw
+apt install -y vim
 
 
 echo "config root password: "

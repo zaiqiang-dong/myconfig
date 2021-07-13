@@ -19,7 +19,7 @@ hi Normal 		ctermfg=248 ctermbg=232 cterm=bold
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-hi manOptions 		ctermfg=001 ctermbg=NONE cterm=bold
+hi manOptions 		ctermfg=031 ctermbg=NONE cterm=bold
 hi manSectionHeading  	ctermfg=002 ctermbg=NONE cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

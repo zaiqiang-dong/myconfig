@@ -4,11 +4,38 @@
 #for java
 sudo apt-get install openjdk-8-jdk
 
-#for android
-sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip build-essential libncurses5-dev texinfo libreadline-dev
+#for base
+sudo apt-get install git-core
+sudo apt-get install nupg
+sudo apt-get install flex
+sudo apt-get install bison
+sudo apt-get install gperf
+sudo apt-get install build-essential
+sudo apt-get install zip
+sudo apt-get install curl
+sudo apt-get install zlib1g-dev
+sudo apt-get install gcc-multilib
+sudo apt-get install g++-multilib
+sudo apt-get install libc6-dev-i386
+sudo apt-get install lib32ncurses5-dev
+sudo apt-get install x11proto-core-dev
+sudo apt-get install libx11-dev
+sudo apt-get install lib32z-dev
+sudo apt-get install ccache
+sudo apt-get install libgl1-mesa-dev
+sudo apt-get install libxml2-utils
+sudo apt-get install xsltproc
+sudo apt-get install unzip
+sudo apt-get install libutils-dev
+sudo apt-get install libelf-dev
+sudo apt-get install build-essential
+sudo apt-get install libncurses5-dev
+sudo apt-get install texinfo
+sudo apt-get install libreadline-dev
 sudo apt-get install android-platform-tools-base
 sudo apt-get install android-tools-adb
 sudo apt-get install android-tools-fastboot
+sudo apt=get install qemu-user-static
 sudo cp ./misc/rules.d/* /etc/udev/rules.d/
 
 #ctags cscope
@@ -70,6 +97,7 @@ yarn global add @vuepress/plugin-back-to-top -D
 yarn global add @vuepress/plugin-google-analytics -D
 yarn global add @vssue/api-github-v3
 yarn global add @vssue/vuepress-plugin-vssue
+yarn global add @vuepress/plugin-medium-zoom
 
 #for download tool
 sudo apt-get install axel
@@ -146,4 +174,5 @@ git config --global core.editor "vim"
 
 #for env config
 echo "export PATH=\$PATH:/home/$USER/.yarn/bin" >> ~/.bashrc
+
 

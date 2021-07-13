@@ -23,9 +23,10 @@ emulator=""
 biosarg=""
 extraarg=""
 
-netvirtio="-netdev user,id=mv -device virtio-net-pci,netdev=mv"
-netvhost="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m,vhost=on"
 netbackfronend="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m"
+netvirtio="-netdev tap,ifname=tap0,script=no,downscript=no,id=m,vhost=on -device virtio-net-pci,netdev=m"
+#netvhost="-net nic,model=e1000,netdev=m -netdev tap,ifname=tap0,script=no,downscript=no,id=m,vhost=on"
+netvhost="-netdev tap,ifname=tap0,script=no,downscript=no,id=m,vhost=on"
 netpassthrough="-device vfio-pci,host=05:00.0,id=net0"
 
 #netargs=$netbackfronend
