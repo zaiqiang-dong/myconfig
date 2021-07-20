@@ -35,7 +35,7 @@ sudo apt-get install libreadline-dev
 sudo apt-get install android-platform-tools-base
 sudo apt-get install android-tools-adb
 sudo apt-get install android-tools-fastboot
-sudo apt=get install qemu-user-static
+sudo apt-get install qemu-user-static
 sudo cp ./misc/rules.d/* /etc/udev/rules.d/
 
 #ctags cscope
@@ -153,6 +153,7 @@ sudo apt install libelf-dev
 #autoacp
 sudo cp ./misc/agit.sh /usr/bin/agit
 sudo cp ./misc/vman.sh /usr/bin/vman
+sudo cp ./misc/cpmd.sh /usr/bin/cpmd
 mkdir ~/.cgdb
 cp ./misc/cgdbrc ~/.cgdb/cgdbrc
 

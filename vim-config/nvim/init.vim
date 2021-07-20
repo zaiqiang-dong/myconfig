@@ -73,6 +73,9 @@ nmap <Space>c : set nohlsearch<CR>
 vmap <C-c> "+y
 set clipboard=unnamedplus
 
+"copy file name and path
+nmap <silent> <F9> : call GetFilePath()<cr>
+
 "copy a word
 nmap vw ve
 
@@ -245,6 +248,10 @@ func CreateCTag()
 	set tags=tags
 endfunc
 
+function GetFilePath()
+    let file_path=expand("%")
+    call setreg('+',file_path)
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting
@@ -460,22 +467,19 @@ let g:NERDSpaceDelims = 0
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 0
 
-let g:NERDCommenterSexyComments = ''
+let g:NERDCommenterSexyComments = ' '
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/','leftAlt': '/*','rightAlt': '*/' },
-			       \ 'cpp': { 'left': '/*','right': '*/','leftAlt': '/*','rightAlt': '*/' },
-			       \ 'cc': { 'left': '/*','right': '*/','leftAlt': '/*','rightAlt': '*/' },
-			       \ 'python': {'left':'#','right':''}
+let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */','leftAlt': '/*','rightAlt': '*/' },
+			       \ 'cpp': { 'left': '/* ','right': ' */','leftAlt': '/*','rightAlt': '*/' },
+			       \ 'cc': { 'left': '/* ','right': ' */','leftAlt': '/*','rightAlt': '*/' },
+			       \ 'python': {'left':'# ','right':''}
 			     \ }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+let g:NERDCommentEmptyLines = 0
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1

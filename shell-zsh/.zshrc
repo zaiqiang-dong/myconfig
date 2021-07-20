@@ -87,5 +87,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 export PATH=$PATH:/home/dongzaiq/tools/android-ndk-r18b/:/home/dongzaiq/.yarn/bin:/home/dongzaiq/Android/Sdk/ndk/21.3.6528147/:/snap/bin:
 export EDITOR="/usr/bin/vim"
 
+#set core dump
+ulimit -c unlimited
 #fortune | cowsay -r
 fortune | cowsay -f tortoise
